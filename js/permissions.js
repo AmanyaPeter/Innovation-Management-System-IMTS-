@@ -51,24 +51,56 @@
       '</td>';
 
     tr.querySelector('.edit-permissions-btn')?.addEventListener('click', function () {
-      ModalSystem.openModal('Edit Permissions', 'Edit permissions for ' + u.name + ':', 'confirm', function () {
-        ToastSystem.showToast('Permissions updated for ' + u.name, 'success');
+      var availablePerms = [
+        "Submit Ideas",
+        "View Resources",
+        "Review",
+        "Approve",
+        "Manage Categories",
+        "Comment",
+        "Full System Access"
+      ];
+      var currentPerms = Array.isArray(u.permissions) ? u.permissions : [];
+
+      var checkboxesHtml = '<div style="display:flex;flex-direction:column;gap:8px;margin-top:10px;">';
+      availablePerms.forEach(function (p) {
+        var checked = currentPerms.indexOf(p) !== -1 ? ' checked' : '';
+        checkboxesHtml += '<label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;">' +
+          '<input type="checkbox" name="userPerms" value="' + p + '"' + checked + '> ' + p +
+          '</label>';
+      });
+      checkboxesHtml += '</div>';
+
+      ModalSystem.openModal('Edit Permissions', 'Edit permissions for ' + u.name + ':' + checkboxesHtml, 'confirm', function () {
+        var selectedPerms = [];
+        document.querySelectorAll('input[name="userPerms"]:checked').forEach(function (chk) {
+          selectedPerms.push(chk.value);
+        });
+        u.permissions = selectedPerms;
+        UserService.saveUsers(allUsers).then(function () {
+          render();
+          ToastSystem.showToast('Permissions updated for ' + u.name, 'success');
+        });
       });
     });
 
     tr.querySelector('.disable-user-btn')?.addEventListener('click', function () {
       ModalSystem.openModal('Disable User', 'Are you sure you want to disable ' + u.name + '?', 'confirm', function () {
         u.accountStatus = 'Inactive';
-        render();
-        ToastSystem.showToast(u.name + ' disabled.', 'warning');
+        UserService.saveUsers(allUsers).then(function () {
+          render();
+          ToastSystem.showToast(u.name + ' disabled.', 'warning');
+        });
       });
     });
 
     tr.querySelector('.activate-user-btn')?.addEventListener('click', function () {
       ModalSystem.openModal('Activate User', 'Activate ' + u.name + '?', 'confirm', function () {
         u.accountStatus = 'Active';
-        render();
-        ToastSystem.showToast(u.name + ' activated.', 'success');
+        UserService.saveUsers(allUsers).then(function () {
+          render();
+          ToastSystem.showToast(u.name + ' activated.', 'success');
+        });
       });
     });
 

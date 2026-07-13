@@ -53,14 +53,18 @@
 
     tr.querySelector('.lock-account-btn')?.addEventListener('click', function () {
       u.accountStatus = 'Locked';
-      render();
-      ToastSystem.showToast('Account locked: ' + u.name, 'warning');
+      UserService.saveUsers(allUsers).then(function () {
+        render();
+        ToastSystem.showToast('Account locked: ' + u.name, 'warning');
+      });
     });
 
     tr.querySelector('.unlock-account-btn')?.addEventListener('click', function () {
       u.accountStatus = 'Active';
-      render();
-      ToastSystem.showToast('Account unlocked: ' + u.name, 'success');
+      UserService.saveUsers(allUsers).then(function () {
+        render();
+        ToastSystem.showToast('Account unlocked: ' + u.name, 'success');
+      });
     });
 
     return tr;
