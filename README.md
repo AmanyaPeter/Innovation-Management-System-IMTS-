@@ -31,8 +31,8 @@ A front-end prototype for managing innovation ideas at the Bank of Uganda. Staff
 
 ```bash
 # 1. Clone the repository
-git clone <repo-url>
-cd bou-innovation-system
+git clone https://github.com/AmanyaPeter/Innovation-Management-System-IMTS-.git
+cd Innovation-Management-System-IMTS-
 
 # 2. Install dependencies
 npm install
