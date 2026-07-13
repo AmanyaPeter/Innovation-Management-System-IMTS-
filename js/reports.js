@@ -2,6 +2,8 @@
 
   var allIdeas = [];
   var currentFilteredIdeas = [];
+  var categoryChartInstance = null;
+  var trendChartInstance = null;
 
   function loadAndRender() {
     Promise.all([
@@ -39,6 +41,7 @@
 
     updateSummary(filtered);
     updateTable(filtered);
+    updateCharts(filtered);
   }
 
   function updateSummary(ideas) {
@@ -75,6 +78,135 @@
     if (!ideas.length) {
       tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:32px;color:#888;">No ideas match the selected filters.</td></tr>';
     }
+  }
+
+  function updateCharts(ideas) {
+    updateCategoryChart(ideas);
+    updateTrendChart(ideas);
+  }
+
+  function updateCategoryChart(ideas) {
+    var categories = {};
+    ideas.forEach(function (i) {
+      var cat = i.category || 'Uncategorized';
+      categories[cat] = (categories[cat] || 0) + 1;
+    });
+
+    var labels = Object.keys(categories);
+    var data = labels.map(function (k) { return categories[k]; });
+
+    var ctx = document.getElementById('categoryChart')?.getContext('2d');
+    if (!ctx) return;
+
+    if (categoryChartInstance) {
+      categoryChartInstance.destroy();
+    }
+
+    if (typeof Chart === 'undefined') return;
+
+    categoryChartInstance = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Number of Ideas',
+          data: data,
+          backgroundColor: '#5A0C08',
+          borderColor: '#5A0C08',
+          borderWidth: 1,
+          borderRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              stepSize: 1,
+              precision: 0
+            }
+          }
+        }
+      }
+    });
+  }
+
+  function updateTrendChart(ideas) {
+    var trends = {};
+    ideas.forEach(function (i) {
+      if (!i.dateSubmitted) return;
+      var d = new Date(i.dateSubmitted);
+      if (isNaN(d.getTime())) return;
+      var year = d.getFullYear();
+      var month = d.getMonth();
+      var monthStr = (month + 1) < 10 ? '0' + (month + 1) : '' + (month + 1);
+      var key = year + '-' + monthStr;
+      trends[key] = (trends[key] || 0) + 1;
+    });
+
+    var sortedKeys = Object.keys(trends).sort();
+    var labels = sortedKeys.map(function (k) {
+      var parts = k.split('-');
+      var yr = parts[0];
+      var mo = parseInt(parts[1], 10);
+      var monthName = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][mo - 1];
+      return monthName + ' ' + yr;
+    });
+    var data = sortedKeys.map(function (k) {
+      return trends[k];
+    });
+
+    var ctx = document.getElementById('trendChart')?.getContext('2d');
+    if (!ctx) return;
+
+    if (trendChartInstance) {
+      trendChartInstance.destroy();
+    }
+
+    if (typeof Chart === 'undefined') return;
+
+    trendChartInstance = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Submissions',
+          data: data,
+          fill: true,
+          backgroundColor: 'rgba(90, 12, 8, 0.1)',
+          borderColor: '#5A0C08',
+          borderWidth: 2,
+          tension: 0.3,
+          pointBackgroundColor: '#5A0C08',
+          pointRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              stepSize: 1,
+              precision: 0
+            }
+          }
+        }
+      }
+    });
   }
 
   // Wire Generate Report
