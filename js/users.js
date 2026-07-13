@@ -53,6 +53,7 @@
 
     tr.querySelector('.lock-account-btn')?.addEventListener('click', function () {
       u.accountStatus = 'Locked';
+      // Persist the lock status to localStorage so it survives a refresh
       UserService.saveUsers(allUsers).then(function () {
         render();
         ToastSystem.showToast('Account locked: ' + u.name, 'warning');
@@ -61,6 +62,7 @@
 
     tr.querySelector('.unlock-account-btn')?.addEventListener('click', function () {
       u.accountStatus = 'Active';
+      // Persist the unlock status to localStorage so it survives a refresh
       UserService.saveUsers(allUsers).then(function () {
         render();
         ToastSystem.showToast('Account unlocked: ' + u.name, 'success');
