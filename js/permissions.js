@@ -77,6 +77,7 @@
           selectedPerms.push(chk.value);
         });
         u.permissions = selectedPerms;
+        // Persist modified permissions to localStorage so they survive a refresh
         UserService.saveUsers(allUsers).then(function () {
           render();
           ToastSystem.showToast('Permissions updated for ' + u.name, 'success');
@@ -87,6 +88,7 @@
     tr.querySelector('.disable-user-btn')?.addEventListener('click', function () {
       ModalSystem.openModal('Disable User', 'Are you sure you want to disable ' + u.name + '?', 'confirm', function () {
         u.accountStatus = 'Inactive';
+        // Persist the disabled status to localStorage so it survives a refresh
         UserService.saveUsers(allUsers).then(function () {
           render();
           ToastSystem.showToast(u.name + ' disabled.', 'warning');
@@ -97,6 +99,7 @@
     tr.querySelector('.activate-user-btn')?.addEventListener('click', function () {
       ModalSystem.openModal('Activate User', 'Activate ' + u.name + '?', 'confirm', function () {
         u.accountStatus = 'Active';
+        // Persist the activated status to localStorage so it survives a refresh
         UserService.saveUsers(allUsers).then(function () {
           render();
           ToastSystem.showToast(u.name + ' activated.', 'success');

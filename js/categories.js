@@ -49,17 +49,23 @@
         c.name = name;
         c.description = desc || '';
         c.status = status || 'Active';
-        render();
-        ToastSystem.showToast('Category updated.', 'success');
+        CategoryService.saveCategories(allCategories).then(function () {
+          render();
+          ToastSystem.showToast('Category updated.', 'success');
+        });
       });
     });
 
     tr.querySelector('.delete-cat-btn')?.addEventListener('click', function () {
       ModalSystem.openModal('Delete Category', 'Are you sure you want to delete "' + c.name + '"?', 'confirm', function () {
         var idx = allCategories.indexOf(c);
-        if (idx !== -1) allCategories.splice(idx, 1);
-        render();
-        ToastSystem.showToast('Category deleted.', 'info');
+        if (idx !== -1) {
+          allCategories.splice(idx, 1);
+          CategoryService.saveCategories(allCategories).then(function () {
+            render();
+            ToastSystem.showToast('Category deleted.', 'info');
+          });
+        }
       });
     });
 
@@ -82,8 +88,10 @@
         createdDate: new Date().toISOString().split('T')[0],
         status: 'Active'
       });
-      render();
-      ToastSystem.showToast('Category "' + name + '" added.', 'success');
+      CategoryService.saveCategories(allCategories).then(function () {
+        render();
+        ToastSystem.showToast('Category "' + name + '" added.', 'success');
+      });
     });
   });
 
