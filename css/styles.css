@@ -707,6 +707,47 @@ fieldset.submission-type legend {
 .login-card .logo img { width: 100%; height: 100%; }
 .login-card .system-title { font-size: 22px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; font-family: var(--font-heading); }
 .login-card .system-subtitle { font-size: 14px; color: var(--text-tertiary); margin-bottom: 32px; }
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+.password-wrapper input {
+  padding-right: 40px !important;
+}
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+  font-size: 14px;
+  padding: 4px;
+  line-height: 1;
+}
+.toggle-password:hover {
+  color: #333;
+}
+.form-options {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #444;
+  cursor: pointer;
+}
+.remember-me input[type="checkbox"] {
+  accent-color: #0078d4;
+}
 .login-card .login-btn {
   width: 100%; height: 42px;
   background: var(--color-primary); color: var(--color-white);
