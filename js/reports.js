@@ -1,6 +1,7 @@
 (function () {
 
   var allIdeas = [];
+  var currentFilteredIdeas = [];
 
   function loadAndRender() {
     Promise.all([
@@ -17,10 +18,6 @@
   }
 
   function applyFilters() {
-    var dept = document.querySelector('[id]') ? null : getSelectValue(1);
-    var cat = getSelectValue(2);
-    var status = getSelectValue(3);
-
     // Since no IDs, use nth-of-type approach
     var selects = document.querySelectorAll('.filters-bar select');
     var deptVal = selects[0]?.value || 'All Departments';
@@ -37,6 +34,8 @@
 
     if (dateFrom) filtered = filtered.filter(function (i) { return i.dateSubmitted >= dateFrom; });
     if (dateTo) filtered = filtered.filter(function (i) { return i.dateSubmitted <= dateTo; });
+
+    currentFilteredIdeas = filtered;
 
     updateSummary(filtered);
     updateTable(filtered);
@@ -84,12 +83,54 @@
     ToastSystem.showToast('Report generated.', 'success');
   });
 
+  function exportToCSV() {
+    var headers = ['Idea Title', 'Submitter', 'Department', 'Category', 'Status', 'Date'];
+    var rows = [headers];
+
+    currentFilteredIdeas.forEach(function (i) {
+      var title = i.title || '';
+      var submitter = i.submitterName || i.submitter || '';
+      var dept = i.department || '';
+      var cat = i.category || '';
+      var status = i.status || '';
+      var date = formatDate(i.dateSubmitted) || '';
+
+      rows.push([title, submitter, dept, cat, status, date]);
+    });
+
+    var csvContent = rows.map(function (row) {
+      return row.map(function (val) {
+        var str = String(val).replace(/"/g, '""');
+        return '"' + str + '"';
+      }).join(',');
+    }).join('\n');
+
+    try {
+      var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      var url = URL.createObjectURL(blob);
+      var link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'imts-reports-export.csv');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      ToastSystem.showToast('CSV report exported successfully.', 'success');
+    } catch (err) {
+      ToastSystem.showToast('Failed to export CSV.', 'error');
+    }
+  }
+
   // Wire export buttons
   document.addEventListener('click', function (e) {
     var btn = e.target.closest('.export-btn');
     if (btn) {
       var format = btn.getAttribute('data-format') || 'CSV';
-      ToastSystem.showToast('Exporting as ' + format + '...', 'info');
+      if (format === 'CSV') {
+        exportToCSV();
+      } else {
+        ToastSystem.showToast(format + ' export is coming soon (requires backend services).', 'info');
+      }
     }
   });
 
