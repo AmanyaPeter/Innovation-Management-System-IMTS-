@@ -2,10 +2,16 @@
 
   var DRAFT_KEY = 'bou_idea_draft';
   var uploadedAttachments = [];
+  var editingIdeaId = null;
 
   function escapeHtml(str) {
     if (str == null) return '';
     return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function getParam(name) {
+    var match = location.search.match(new RegExp('[?&]' + name + '=([^&]+)'));
+    return match ? decodeURIComponent(match[1]) : null;
   }
 
   // Collect form data from all steps
@@ -13,7 +19,7 @@
     var isTeam = document.querySelector('input[name="submissionType"]:checked')?.value === 'team';
 
     var data = {
-      id: Date.now(),
+      id: editingIdeaId || Date.now(),
       title: document.querySelector('#step2 input[type="text"]')?.value || '',
       category: document.querySelector('input[name="innovationCat"]:checked')?.value || '',
       department: document.getElementById('indivBusinessUnit')?.value || '',
@@ -203,15 +209,44 @@
     });
   }
 
-  function loadDraft() {
-    var saved = localStorage.getItem(DRAFT_KEY);
-    if (!saved) return;
+  function getLocalIdeas() {
     try {
-      var data = JSON.parse(saved);
-      populateForm(data);
-      ToastSystem.showToast('Draft restored.', 'info');
-    } catch (e) {
-      localStorage.removeItem(DRAFT_KEY);
+      return JSON.parse(localStorage.getItem('bou_ideas') || '[]');
+    } catch (e) { return []; }
+  }
+
+  function loadExistingIdeaOrDraft() {
+    var idStr = getParam('id');
+    if (idStr) {
+      var id = parseInt(idStr, 10);
+      editingIdeaId = id;
+
+      Promise.all([
+        IdeaService.getIdeas(),
+        Promise.resolve(getLocalIdeas())
+      ]).then(function (results) {
+        var all = results[0].filter(function (r) {
+          return !results[1].some(function (l) { return l.id === r.id; });
+        }).concat(results[1]);
+
+        var idea = all.find(function (i) { return i.id === id; });
+        if (idea) {
+          populateForm(idea);
+          ToastSystem.showToast('Idea loaded for editing.', 'info');
+        } else {
+          ToastSystem.showToast('Idea not found.', 'error');
+        }
+      });
+    } else {
+      var saved = localStorage.getItem(DRAFT_KEY);
+      if (!saved) return;
+      try {
+        var data = JSON.parse(saved);
+        populateForm(data);
+        ToastSystem.showToast('Draft restored.', 'info');
+      } catch (e) {
+        localStorage.removeItem(DRAFT_KEY);
+      }
     }
   }
 
@@ -229,7 +264,14 @@
       try {
         ideas = JSON.parse(localStorage.getItem('bou_ideas') || '[]');
       } catch (e) { ideas = []; }
-      ideas.push(data);
+
+      // If editing an existing idea, update/replace it!
+      var existingIndex = ideas.findIndex(function (i) { return i.id === editingIdeaId; });
+      if (existingIndex !== -1) {
+        ideas[existingIndex] = data;
+      } else {
+        ideas.push(data);
+      }
       localStorage.setItem('bou_ideas', JSON.stringify(ideas));
       localStorage.removeItem(DRAFT_KEY);
 
@@ -397,6 +439,6 @@
     });
   });
 
-  // Load draft on page load
-  loadDraft();
+  // Load existing idea or draft on page load
+  loadExistingIdeaOrDraft();
 })();

@@ -16,7 +16,9 @@
       IdeaService.getIdeas(),
       getLocalIdeas()
     ]).then(function (results) {
-      var all = results[0].concat(results[1]);
+      var all = results[0].filter(function (r) {
+        return !results[1].some(function (l) { return l.id === r.id; });
+      }).concat(results[1]);
       var idea = all.find(function (i) { return i.id === id; });
       if (!idea) {
         document.querySelector('.detail-grid').innerHTML = '<div class="card" style="padding:40px;text-align:center;color:var(--text-tertiary);">Idea not found.</div>';
