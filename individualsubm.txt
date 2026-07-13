@@ -1,0 +1,184 @@
+# Innovation Idea Submission Form
+
+## Page 1: Innovator Information
+
+### 1. Submission Type *
+
+**Are you submitting this idea as an individual or as part of a team?**
+
+* ☐ Individual
+* ☐ Team
+
+---
+
+### 2. Business Unit *
+
+**Which Business Unit are you attached to?**
+
+* ☐ Accounts
+* ☐ Agricultural Credit Facility & Other Credit Schemes
+* ☐ Administrative Services
+* ☐ Banking
+* ☐ Bank Resolution
+* ☐ Board Affairs
+* ☐ Commercial Banking
+
+---
+
+### 3. Duty Station *
+
+**Where are you stationed?**
+
+* ☐ Headquarters
+* ☐ BoU Clinic / William Street
+* ☐ Arua
+* ☐ Fort Portal
+* ☐ Gulu
+* ☐ Masaka
+* ☐ Mbale
+* ☐ Mbarara
+
+---
+
+### 4. Age Bracket *
+
+* ☐ 18–24
+* ☐ 25–34
+* ☐ 35–44
+* ☐ 45–54
+* ☐ 55 and above
+
+---
+
+### 5. Gender *
+
+* ☐ Male
+* ☐ Female
+
+---
+
+### 6. Job Category / Rank *
+
+* ☐ Executive Management (Governor, Deputy Governor, Executive Directors)
+* ☐ Senior Management (Directors and Deputy Directors)
+* ☐ Middle Management (Team Leaders, SPBOs and PBOs)
+* ☐ Operational Management (SBOIs, SBOIIs, BOIs and BOIIs)
+* ☐ Administrative Assistant
+* ☐ Clerical Staff
+
+---
+
+# Page 2: Innovation Idea
+
+### 1. Idea Title *
+
+**Provide a concise and descriptive title for your innovation.**
+
+---
+
+### 2. Executive Summary *
+
+**Briefly describe your idea, how it works, and the value it is intended to create.**
+
+---
+
+### 3. Problem or Opportunity *
+
+**What challenge, gap, or opportunity does this idea address? What prompted you to develop this idea?**
+
+---
+
+### 4. Proposed Solution *
+
+**Describe the proposed product, service, process, technology, policy, or business model. Explain how it addresses the identified problem or opportunity.**
+
+---
+
+# Page 3: Strategic Alignment
+
+### 1. Strategic Objective Supported *
+
+**Select the strategic objective(s) that best align with your innovation.**
+
+* ☐ Enhance Stakeholder Confidence
+* ☐ Enhance Price Stability
+* ☐ Enhance Financial System Soundness and Resilience
+* ☐ Enhance Financial System Development
+* ☐ Enhance Financial Performance
+* ☐ Improve Efficiency and Reliability of Bank Processes
+* ☐ Improve Employee Competence
+* ☐ Improve Organisational Systems and Infrastructure
+* ☐ Enhance Organisational Culture
+* ☐ Other (please specify)
+
+---
+
+### 2. Innovation Category *
+
+**Select the category that best describes your innovation.**
+
+**☐ Product / Service**
+New or significantly improved products or services that enhance value delivered to stakeholders.
+
+**☐ Process**
+Improved workflows or operational methods that increase efficiency, effectiveness, transparency, or resilience.
+
+**☐ Business Model**
+New approaches to delivering the Bank's mandate, including partnerships, service delivery models, or value creation mechanisms.
+
+**☐ Policy / Governance**
+Innovations involving policies, governance structures, regulations, decision-making processes, or institutional frameworks.
+
+**☐ Technology / System**
+Application or introduction of new technologies, digital solutions, STEM innovations, or system capabilities.
+
+**☐ Sustainability**
+Innovations that promote environmental sustainability, social impact, financial inclusion, or strengthen public trust.
+
+---
+
+# Page 4: Benefits and Implementation
+
+### 1. Expected Benefits / Value Addition *
+
+**Describe the expected benefits of the innovation. Consider operational, financial, customer, regulatory, or strategic value.**
+
+---
+
+### 2. Key Enablers / Resources Required *
+
+**Identify the resources required for successful implementation. Examples include:**
+
+* ICT support
+* Funding or budget
+* Skills or training
+* Cross-functional collaboration
+* External partnerships
+* Infrastructure or equipment
+
+---
+
+### 3. Implementation Approach *
+
+**Briefly outline how the innovation could be developed and implemented. Examples may include:**
+
+* Proof of Concept (PoC)
+* Prototype
+* Pilot implementation
+* Phased rollout
+* Full-scale deployment
+
+---
+
+### 4. Expected Impact Indicators *
+
+**Describe how success will be measured. Examples include:**
+
+* Reduction in processing time
+* Cost savings
+* Productivity improvements
+* Customer or stakeholder satisfaction
+* Revenue generated or costs avoided
+* Risk reduction
+* Compliance improvements
+* Adoption or usage rates

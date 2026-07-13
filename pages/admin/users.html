@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management - Innovation Management System</title>
+  <link rel="icon" type="image/x-icon" href="../../boulogo.ico">
+  <link rel="stylesheet" href="../../css/styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-logo"><img src="../../boulogo.ico" alt="BOU"></div>
+      <div class="brand-text">Bank of Uganda<span>Innovation Management</span></div>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="dashboard.html"><span class="nav-icon"><i data-lucide="layout-dashboard" style="width:18px;height:18px;"></i></span><span>Dashboard</span></a></li>
+      <li><a href="users.html" class="active"><span class="nav-icon"><i data-lucide="users" style="width:18px;height:18px;"></i></span><span>Users</span></a></li>
+      <li><a href="activity-log.html"><span class="nav-icon"><i data-lucide="book-open" style="width:18px;height:18px;"></i></span><span>Activity Log</span></a></li>
+      <li><a href="#"><span class="nav-icon"><i data-lucide="user" style="width:18px;height:18px;"></i></span><span>Profile</span></a></li>
+    </ul>
+    <div class="sidebar-footer">BOU Innovation System v1.0</div>
+  </aside>
+
+  <div class="main-wrapper">
+    <header class="top-header">
+      <div class="header-left">
+        <h2>User Management</h2>
+      </div>
+      <div class="header-right">
+        <button class="notification-btn"><i data-lucide="bell" style="width:20px;height:20px;"></i><span class="badge-dot"></span></button>
+        <div class="user-profile">
+          <div class="avatar">A</div>
+          <span class="user-name">Admin</span>
+        </div>
+        <button class="logout-btn">Log out</button>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
+        <div class="filters-bar" style="margin-bottom:0;">
+          <input type="text" class="form-control search-input" placeholder="Search users...">
+        </div>
+        <button class="btn btn-primary create-user-btn"><i data-lucide="plus" style="width:16px;height:16px;"></i> Create User</button>
+      </div>
+
+      <div class="card" style="padding:0;">
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Role</th>
+                <th>Account Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Jane Mukasa</td>
+                <td>jane.mukasa@bou.or.ug</td>
+                <td>Innovation Team</td>
+                <td>Innovation Manager</td>
+                <td><span class="badge badge-active">Active</span></td>
+                <td>
+                  <div class="actions">
+                    <button class="btn btn-sm btn-secondary reset-pwd-btn">Reset Password</button>
+                    <button class="btn btn-sm btn-danger lock-account-btn">Lock Account</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Peter Kaggwa</td>
+                <td>peter.kaggwa@bou.or.ug</td>
+                <td>Innovation Team</td>
+                <td>Innovation Officer</td>
+                <td><span class="badge badge-active">Active</span></td>
+                <td>
+                  <div class="actions">
+                    <button class="btn btn-sm btn-secondary reset-pwd-btn">Reset Password</button>
+                    <button class="btn btn-sm btn-danger lock-account-btn">Lock Account</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Brian Ssempijja</td>
+                <td>brian@bou.or.ug</td>
+                <td>Information Technology</td>
+                <td>Staff</td>
+                <td><span class="badge badge-active">Active</span></td>
+                <td>
+                  <div class="actions">
+                    <button class="btn btn-sm btn-secondary reset-pwd-btn">Reset Password</button>
+                    <button class="btn btn-sm btn-danger lock-account-btn">Lock Account</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Sarah Kemigisha</td>
+                <td>sarah@bou.or.ug</td>
+                <td>Finance</td>
+                <td>Staff</td>
+                <td><span class="badge badge-active">Active</span></td>
+                <td>
+                  <div class="actions">
+                    <button class="btn btn-sm btn-secondary reset-pwd-btn">Reset Password</button>
+                    <button class="btn btn-sm btn-danger lock-account-btn">Lock Account</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>John Wasswa</td>
+                <td>john@bou.or.ug</td>
+                <td>Operations</td>
+                <td>Staff</td>
+                <td><span class="badge badge-inactive">Locked</span></td>
+                <td>
+                  <div class="actions">
+                    <button class="btn btn-sm btn-secondary reset-pwd-btn">Reset Password</button>
+                    <button class="btn btn-sm btn-success unlock-account-btn">Unlock Account</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Grace Nabatanzi</td>
+                <td>grace@bou.or.ug</td>
+                <td>Operations</td>
+                <td>Staff</td>
+                <td><span class="badge badge-active">Active</span></td>
+                <td>
+                  <div class="actions">
+                    <button class="btn btn-sm btn-secondary reset-pwd-btn">Reset Password</button>
+                    <button class="btn btn-sm btn-danger lock-account-btn">Lock Account</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../services/ideaService.js"></script>
+  <script src="../../services/userService.js"></script>
+  <script src="../../services/notificationService.js"></script>
+  <script src="../../services/resourceService.js"></script>
+  <script src="../../services/categoryService.js"></script>
+  <script src="../../services/activityService.js"></script>
+  <script src="../../utils/toast.js"></script>
+  <script src="../../utils/search.js"></script>
+  <script src="../../utils/sort.js"></script>
+  <script src="../../utils/filter.js"></script>
+  <script src="../../utils/pagination.js"></script>
+  <script src="../../utils/table.js"></script>
+  <script src="../../utils/modal.js"></script>
+  <script src="../../js/auth.js"></script>
+  <script src="../../js/app.js"></script>
+  <script src="../../js/users.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

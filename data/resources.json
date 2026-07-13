@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "Innovation Submission Guidelines",
+    "description": "Step-by-step guide on how to submit innovation ideas, eligibility criteria, and evaluation process.",
+    "category": "Innovation Guidelines",
+    "uploadedDate": "2025-01-15",
+    "fileType": "pdf",
+    "fileUrl": "/resources/innovation-submission-guidelines.pdf",
+    "fileSize": "2.3 MB"
+  },
+  {
+    "id": 2,
+    "title": "Idea Proposal Template",
+    "description": "Standardised template for submitting innovation ideas, including all required sections and formatting guidelines.",
+    "category": "Templates",
+    "uploadedDate": "2025-01-10",
+    "fileType": "docx",
+    "fileUrl": "/resources/idea-proposal-template.docx",
+    "fileSize": "1.1 MB"
+  },
+  {
+    "id": 3,
+    "title": "Innovation Policy Framework",
+    "description": "The official Bank of Uganda policy framework governing innovation management, IP rights, and reward structures.",
+    "category": "Policies",
+    "uploadedDate": "2025-01-05",
+    "fileType": "pdf",
+    "fileUrl": "/resources/innovation-policy-framework.pdf",
+    "fileSize": "3.5 MB"
+  },
+  {
+    "id": 4,
+    "title": "Design Thinking Workshop",
+    "description": "Training materials from the Design Thinking workshop including exercises, case studies, and facilitator guides.",
+    "category": "Training Materials",
+    "uploadedDate": "2024-12-20",
+    "fileType": "pdf",
+    "fileUrl": "/resources/design-thinking-workshop.pdf",
+    "fileSize": "5.2 MB"
+  },
+  {
+    "id": 5,
+    "title": "Budget Estimation Tool",
+    "description": "Excel-based tool for estimating the budget required for innovation projects, with built-in formulas and templates.",
+    "category": "Templates",
+    "uploadedDate": "2024-12-15",
+    "fileType": "xlsx",
+    "fileUrl": "/resources/budget-estimation-tool.xlsx",
+    "fileSize": "890 KB"
+  },
+  {
+    "id": 6,
+    "title": "Innovation Champion Training",
+    "description": "Comprehensive training programme for Innovation Champions including presentation slides, handouts, and assessment tools.",
+    "category": "Training Materials",
+    "uploadedDate": "2024-12-01",
+    "fileType": "pdf",
+    "fileUrl": "/resources/innovation-champion-training.pdf",
+    "fileSize": "8.1 MB"
+  }
+]

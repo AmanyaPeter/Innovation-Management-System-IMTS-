@@ -1,0 +1,261 @@
+# Innovation Idea Submission Form
+
+## Introduction
+
+**Innovation Idea Submission Form**
+
+Thank you for taking the time to submit your innovation idea. This form is intended to capture innovative products, services, technologies, processes, policies, and business model improvements that support the Bank's strategic objectives.
+
+**Note:**
+
+* Fields marked with **(*)** are mandatory.
+* If submitting as a **team**, additional information about the team composition will be requested.
+* Your submission will be treated in accordance with the Bank's innovation management process.
+
+---
+
+# Page 1 of 4 – Innovator Information
+
+## 1. Submission Type *
+
+**Are you submitting this idea as an individual or as part of a team?**
+
+* ☐ Individual
+* ☐ Team
+
+---
+
+## 2. Business Unit *
+
+**Which Business Unit are you attached to?**
+
+* ☐ Accounts
+* ☐ Agricultural Credit Facility & Other Credit Schemes
+* ☐ Administrative Services
+* ☐ Banking
+* ☐ Bank Resolution
+* ☐ Board Affairs
+* ☐ Commercial Banking
+* ☐ Communications
+* ☐ Currency
+* ☐ Financial Markets
+* ☐ Financial Stability
+* ☐ Human Resources
+* ☐ Information Technology
+* ☐ Internal Audit
+* ☐ Legal Services
+* ☐ National Payments Systems
+* ☐ Procurement & Disposal
+* ☐ Research
+* ☐ Risk Management
+* ☐ Statistics
+* ☐ Supervision
+* ☐ Other (Please specify)
+
+---
+
+## Individual Submission Only
+
+### Age Bracket *
+
+* ☐ 18–24
+* ☐ 25–34
+* ☐ 35–44
+* ☐ 45–54
+* ☐ 55 and above
+
+### Gender *
+
+* ☐ Male
+* ☐ Female
+
+### Duty Station *
+
+* ☐ Headquarters
+* ☐ BoU Clinic / William Street
+* ☐ Arua
+* ☐ Fort Portal
+* ☐ Gulu
+* ☐ Jinja
+* ☐ Kabale
+* ☐ Lira
+* ☐ Masaka
+* ☐ Mbale
+* ☐ Mbarara
+
+### Job Category / Rank *
+
+* ☐ Executive Management
+* ☐ Senior Management
+* ☐ Middle Management
+* ☐ Operational Management
+* ☐ Administrative Assistant
+* ☐ Clerical Staff
+* ☐ Support Staff
+
+---
+
+## Team Submission Only
+
+### Team Composition by Job Category
+
+**Select the number of team members under each rank category.**
+
+| Job Category             |  1  |  2  |  3  |  4  |  5  |  6  |  7+ |
+| ------------------------ | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| Executive Management     |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |
+| Senior Management        |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |
+| Middle Management        |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |
+| Operational Management   |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |
+| Administrative Assistant |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |
+| Clerical Staff           |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |
+| Support Staff            |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |
+
+---
+
+### Team Composition by Age
+
+| Age Bracket  |  1  |  2  |  3  |  4  |  5  |  6  |  7+ |
+| ------------ | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| 18–24        |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |
+| 25–34        |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |
+| 35–44        |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |
+| 45–54        |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |
+| 55 and above |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |
+
+---
+
+### Team Composition by Gender
+
+| Gender |  1  |  2  |  3  |  4  |  5  |  6  |  7+ |
+| ------ | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| Male   |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |
+| Female |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |
+
+---
+
+### Team Composition by Duty Station
+
+| Station                     |  1  |  2  |  3  |  4  |  5  |  6  |  7+ |
+| --------------------------- | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| Headquarters                |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |
+| BoU Clinic / William Street |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |
+| Arua                        |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |
+| Fort Portal                 |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |
+| Gulu                        |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |
+| Jinja                       |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |
+| Kabale                      |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |
+| Lira                        |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |
+| Masaka                      |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |
+| Mbale                       |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |
+| Mbarara                     |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |  ○  |
+
+---
+
+# Page 2 of 4 – Innovation Idea
+
+## Idea Title *
+
+Provide a concise and descriptive title for your innovation.
+
+---
+
+## Executive Summary *
+
+Briefly describe your idea, how it works, and the value it is intended to create.
+
+---
+
+## Problem or Opportunity *
+
+Describe the challenge, gap, or opportunity that prompted this idea.
+
+---
+
+## Proposed Solution *
+
+Explain the proposed product, service, technology, process, policy, or business model and how it addresses the identified need.
+
+---
+
+# Page 3 of 4 – Strategic Alignment
+
+## Strategic Objective(s) Supported *
+
+Select all that apply.
+
+* ☐ Enhance Stakeholder Confidence
+* ☐ Enhance Price Stability
+* ☐ Enhance Financial System Soundness and Resilience
+* ☐ Enhance Financial System Development
+* ☐ Enhance Financial Performance
+* ☐ Improve Efficiency and Reliability of Bank Processes
+* ☐ Improve Employee Competence
+* ☐ Improve Organisational Systems and Infrastructure
+* ☐ Enhance Organisational Culture
+* ☐ Other (Specify)
+
+---
+
+## Innovation Category *
+
+* ☐ Product / Service
+* ☐ Process
+* ☐ Business Model
+* ☐ Policy / Governance
+* ☐ Technology / System
+* ☐ Sustainability
+
+---
+
+# Page 4 of 4 – Benefits and Implementation
+
+## Expected Benefits / Value Addition *
+
+Describe the anticipated operational, financial, strategic, customer, or societal benefits.
+
+---
+
+## Key Enablers / Resources Required *
+
+List any required resources, including:
+
+* ICT support
+* Funding
+* Skills and training
+* Infrastructure
+* Cross-functional collaboration
+* External partnerships
+
+---
+
+## Implementation Approach *
+
+Outline the proposed implementation plan, such as:
+
+* Proof of Concept
+* Prototype
+* Pilot
+* Phased rollout
+* Full implementation
+
+---
+
+## Expected Impact Indicators *
+
+Identify measurable indicators of success, such as:
+
+* Time saved
+* Cost savings
+* Productivity improvements
+* Increased stakeholder satisfaction
+* Revenue generated
+* Risks mitigated
+* Compliance improvements
+* Adoption rate
+
+---
+
+**End of Form**
+
+Thank you for submitting your innovation idea. Your contribution supports continuous improvement and innovation across the Bank.

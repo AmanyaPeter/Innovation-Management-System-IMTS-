@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Innovation Management System</title>
+  <link rel="icon" type="image/x-icon" href="../../boulogo.ico">
+  <link rel="stylesheet" href="../../css/styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-logo"><img src="../../boulogo.ico" alt="BOU"></div>
+      <div class="brand-text">Bank of Uganda<span>Innovation Management</span></div>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="dashboard.html" class="active"><span class="nav-icon"><i data-lucide="layout-dashboard" style="width:18px;height:18px;"></i></span><span>Dashboard</span></a></li>
+      <li><a href="users.html"><span class="nav-icon"><i data-lucide="users" style="width:18px;height:18px;"></i></span><span>Users</span></a></li>
+      <li><a href="activity-log.html"><span class="nav-icon"><i data-lucide="book-open" style="width:18px;height:18px;"></i></span><span>Activity Log</span></a></li>
+      <li><a href="#"><span class="nav-icon"><i data-lucide="user" style="width:18px;height:18px;"></i></span><span>Profile</span></a></li>
+    </ul>
+    <div class="sidebar-footer">BOU Innovation System v1.0</div>
+  </aside>
+
+  <div class="main-wrapper">
+    <header class="top-header">
+      <div class="header-left">
+        <h2>Admin Dashboard</h2>
+      </div>
+      <div class="header-right">
+        <button class="notification-btn"><i data-lucide="bell" style="width:20px;height:20px;"></i><span class="badge-dot"></span></button>
+        <div class="user-profile">
+          <div class="avatar">A</div>
+          <span class="user-name">Admin</span>
+        </div>
+        <button class="logout-btn">Log out</button>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="welcome-bar">
+        <h1>IT Administrator Dashboard</h1>
+        <p>Manage system users, monitor activity, and configure settings</p>
+      </div>
+
+      <div class="summary-cards">
+        <div class="summary-card">
+          <div class="card-label">Total Users</div>
+          <div class="card-value">156</div>
+          <div class="card-sub">Registered accounts</div>
+        </div>
+        <div class="summary-card">
+          <div class="card-label">Active Users</div>
+          <div class="card-value">134</div>
+          <div class="card-sub">Logged in this month</div>
+        </div>
+        <div class="summary-card">
+          <div class="card-label">Locked Accounts</div>
+          <div class="card-value">5</div>
+          <div class="card-sub">Require unlocking</div>
+        </div>
+        <div class="summary-card">
+          <div class="card-label">Recent Activities</div>
+          <div class="card-value">247</div>
+          <div class="card-sub">In the last 7 days</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-header">
+          <h3>Recent Login Activity</h3>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr><th>User</th><th>Email</th><th>Last Login</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Jane Mukasa</td><td>jane.mukasa@bou.or.ug</td><td>14 Jul 2025, 09:30 AM</td><td><span class="badge badge-active">Online</span></td></tr>
+              <tr><td>Peter Kaggwa</td><td>peter.kaggwa@bou.or.ug</td><td>14 Jul 2025, 08:45 AM</td><td><span class="badge badge-active">Online</span></td></tr>
+              <tr><td>Brian Ssempijja</td><td>brian@bou.or.ug</td><td>13 Jul 2025, 04:15 PM</td><td><span class="badge badge-inactive">Offline</span></td></tr>
+              <tr><td>Sarah Kemigisha</td><td>sarah@bou.or.ug</td><td>13 Jul 2025, 02:30 PM</td><td><span class="badge badge-inactive">Offline</span></td></tr>
+              <tr><td>John Wasswa</td><td>john@bou.or.ug</td><td>12 Jul 2025, 11:00 AM</td><td><span class="badge badge-inactive">Offline</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../services/ideaService.js"></script>
+  <script src="../../services/userService.js"></script>
+  <script src="../../services/notificationService.js"></script>
+  <script src="../../services/resourceService.js"></script>
+  <script src="../../services/categoryService.js"></script>
+  <script src="../../services/activityService.js"></script>
+  <script src="../../utils/toast.js"></script>
+  <script src="../../utils/search.js"></script>
+  <script src="../../utils/sort.js"></script>
+  <script src="../../utils/filter.js"></script>
+  <script src="../../utils/pagination.js"></script>
+  <script src="../../utils/table.js"></script>
+  <script src="../../utils/modal.js"></script>
+  <script src="../../js/auth.js"></script>
+  <script src="../../js/app.js"></script>
+  <script src="../../js/dashboards.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

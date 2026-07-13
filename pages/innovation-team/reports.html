@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports - Innovation Management System</title>
+  <link rel="icon" type="image/x-icon" href="../../boulogo.ico">
+  <link rel="stylesheet" href="../../css/styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-logo"><img src="../../boulogo.ico" alt="BOU"></div>
+      <div class="brand-text">Bank of Uganda<span>Innovation Management</span></div>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="dashboard.html"><span class="nav-icon"><i data-lucide="layout-dashboard" style="width:18px;height:18px;"></i></span><span>Dashboard</span></a></li>
+      <li><a href="submitted-ideas.html"><span class="nav-icon"><i data-lucide="list" style="width:18px;height:18px;"></i></span><span>Submitted Ideas</span></a></li>
+      <li><a href="categories.html"><span class="nav-icon"><i data-lucide="folder-tree" style="width:18px;height:18px;"></i></span><span>Categories</span></a></li>
+      <li><a href="../staff/resources.html"><span class="nav-icon"><i data-lucide="book-open" style="width:18px;height:18px;"></i></span><span>Resources</span></a></li>
+      <li><a href="reports.html" class="active"><span class="nav-icon"><i data-lucide="bar-chart-3" style="width:18px;height:18px;"></i></span><span>Reports</span></a></li>
+      <li><a href="permissions.html"><span class="nav-icon"><i data-lucide="shield" style="width:18px;height:18px;"></i></span><span>Permissions</span></a></li>
+    </ul>
+    <div class="sidebar-footer">BOU Innovation System v1.0</div>
+  </aside>
+
+  <div class="main-wrapper">
+    <header class="top-header">
+      <div class="header-left">
+        <h2>Reports</h2>
+      </div>
+      <div class="header-right">
+        <button class="notification-btn"><i data-lucide="bell" style="width:20px;height:20px;"></i><span class="badge-dot"></span></button>
+        <div class="user-profile">
+          <div class="avatar">JM</div>
+          <span class="user-name">Jane Mukasa</span>
+        </div>
+        <button class="logout-btn">Log out</button>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="card">
+        <div class="section-header">
+          <h3>Report Filters</h3>
+        </div>
+        <div class="filters-bar">
+          <div class="form-group" style="margin-bottom:0;">
+            <label>Date Range</label>
+            <div style="display:flex;gap:8px;">
+              <input type="date" class="form-control" style="min-width:auto;">
+              <span style="line-height:40px;color:#888;">to</span>
+              <input type="date" class="form-control" style="min-width:auto;">
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label>Department</label>
+            <select class="form-control">
+              <option>All Departments</option>
+              <option>Information Technology</option>
+              <option>Finance</option>
+              <option>Operations</option>
+              <option>Risk Management</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label>Category</label>
+            <select class="form-control">
+              <option>All Categories</option>
+              <option>FinTech</option>
+              <option>Process Improvement</option>
+              <option>Technology</option>
+              <option>Product Innovation</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label>Status</label>
+            <select class="form-control">
+              <option>All Statuses</option>
+              <option>Submitted</option>
+              <option>Under Review</option>
+              <option>Approved</option>
+              <option>Declined</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:0;align-self:flex-end;">
+            <button class="btn btn-primary generate-report-btn" style="height:40px;">Generate Report</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="two-col-grid">
+        <div class="card">
+          <div class="section-header">
+            <h3>Summary</h3>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div>
+              <div style="font-size:12px;color:#888;">Total Ideas</div>
+              <div style="font-size:28px;font-weight:700;">48</div>
+            </div>
+            <div>
+              <div style="font-size:12px;color:#888;">Approved</div>
+              <div style="font-size:28px;font-weight:700;color:#2e7d32;">22</div>
+            </div>
+            <div>
+              <div style="font-size:12px;color:#888;">Under Review</div>
+              <div style="font-size:28px;font-weight:700;color:#e65100;">12</div>
+            </div>
+            <div>
+              <div style="font-size:12px;color:#888;">Declined</div>
+              <div style="font-size:28px;font-weight:700;color:#c62828;">8</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-header">
+            <h3>Ideas by Category</h3>
+          </div>
+          <div class="chart-placeholder"><i data-lucide="bar-chart-3" style="width:24px;height:24px;"></i> Chart Placeholder</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-header">
+          <h3>Monthly Submission Trend</h3>
+        </div>
+        <div class="chart-placeholder" style="height:200px;"><i data-lucide="bar-chart-3" style="width:24px;height:24px;"></i> Chart Placeholder (Monthly Trend)</div>
+      </div>
+
+      <div class="card">
+        <div class="section-header">
+          <h3>Detailed Report</h3>
+          <div style="display:flex;gap:8px;">
+            <button class="btn btn-sm btn-secondary export-btn" data-format="PDF">Export PDF</button>
+            <button class="btn btn-sm btn-secondary export-btn" data-format="Excel">Export Excel</button>
+            <button class="btn btn-sm btn-secondary export-btn" data-format="CSV">Export CSV</button>
+          </div>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Idea Title</th>
+                <th>Submitter</th>
+                <th>Department</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Digital Currency Wallet</td><td>Brian Ssempijja</td><td>IT</td><td>FinTech</td><td><span class="badge badge-under-review">Under Review</span></td><td>10 Jul 2025</td></tr>
+              <tr><td>Automated Loan Disbursement</td><td>Sarah Kemigisha</td><td>Finance</td><td>Process</td><td><span class="badge badge-approved">Approved</span></td><td>28 Jun 2025</td></tr>
+              <tr><td>Fraud Detection AI</td><td>Peter Kaggwa</td><td>Risk</td><td>Technology</td><td><span class="badge badge-submitted">Submitted</span></td><td>15 Jun 2025</td></tr>
+              <tr><td>Mobile Banking Lite</td><td>Grace Nabatanzi</td><td>Operations</td><td>Product</td><td><span class="badge badge-declined">Declined</span></td><td>02 Jun 2025</td></tr>
+              <tr><td>Biometric Branch Access</td><td>John Wasswa</td><td>IT</td><td>Technology</td><td><span class="badge badge-approved">Approved</span></td><td>20 May 2025</td></tr>
+              <tr><td>Chatbot for Customer Service</td><td>Alice Mutoni</td><td>Operations</td><td>CX</td><td><span class="badge badge-submitted">Submitted</span></td><td>05 Jul 2025</td></tr>
+              <tr><td>Open Banking API</td><td>Tom Ssali</td><td>IT</td><td>FinTech</td><td><span class="badge badge-under-review">Under Review</span></td><td>01 Jul 2025</td></tr>
+              <tr><td>Green Banking Initiative</td><td>Rebecca Nambi</td><td>Finance</td><td>Process</td><td><span class="badge badge-approved">Approved</span></td><td>18 Jun 2025</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../services/ideaService.js"></script>
+  <script src="../../services/userService.js"></script>
+  <script src="../../services/notificationService.js"></script>
+  <script src="../../services/resourceService.js"></script>
+  <script src="../../services/categoryService.js"></script>
+  <script src="../../services/activityService.js"></script>
+  <script src="../../utils/toast.js"></script>
+  <script src="../../utils/search.js"></script>
+  <script src="../../utils/sort.js"></script>
+  <script src="../../utils/filter.js"></script>
+  <script src="../../utils/pagination.js"></script>
+  <script src="../../utils/table.js"></script>
+  <script src="../../utils/modal.js"></script>
+  <script src="../../js/auth.js"></script>
+  <script src="../../js/app.js"></script>
+  <script src="../../js/reports.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

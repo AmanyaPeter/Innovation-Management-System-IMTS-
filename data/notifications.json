@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "type": "bar-chart-3",
+    "title": "Your idea has moved to Concept Development",
+    "description": "Your idea 'Digital Currency Wallet' has been reviewed and moved to the Concept Development stage.",
+    "timestamp": "2025-07-14T11:00:00Z",
+    "time": "2 hours ago",
+    "isRead": false,
+    "ideaReference": "Digital Currency Wallet"
+  },
+  {
+    "id": 2,
+    "type": "file-text",
+    "title": "Innovation Team requested additional information",
+    "description": "Additional details on security architecture are needed for your submission 'Digital Currency Wallet'.",
+    "timestamp": "2025-07-13T10:00:00Z",
+    "time": "1 day ago",
+    "isRead": false,
+    "ideaReference": "Digital Currency Wallet"
+  },
+  {
+    "id": 3,
+    "type": "check-circle",
+    "title": "Your submission has been approved",
+    "description": "'Automated Loan Disbursement' has been approved and moved to the Deployment stage.",
+    "timestamp": "2025-07-11T09:00:00Z",
+    "time": "3 days ago",
+    "isRead": true,
+    "ideaReference": "Automated Loan Disbursement"
+  },
+  {
+    "id": 4,
+    "type": "alert-triangle",
+    "title": "SLA deadline approaching",
+    "description": "Review for 'Mobile Banking Lite' is due in 2 days.",
+    "timestamp": "2025-07-09T08:00:00Z",
+    "time": "5 days ago",
+    "isRead": true,
+    "ideaReference": "Mobile Banking Lite"
+  },
+  {
+    "id": 5,
+    "type": "users",
+    "title": "New comment on your idea",
+    "description": "Peter Kaggwa commented on 'Digital Currency Wallet'.",
+    "timestamp": "2025-07-07T14:00:00Z",
+    "time": "1 week ago",
+    "isRead": true,
+    "ideaReference": "Digital Currency Wallet"
+  },
+  {
+    "id": 6,
+    "type": "megaphone",
+    "title": "Resources updated",
+    "description": "New innovation guidelines have been published in the Resources Library.",
+    "timestamp": "2025-07-07T10:00:00Z",
+    "time": "1 week ago",
+    "isRead": true,
+    "ideaReference": null
+  },
+  {
+    "id": 7,
+    "type": "check-circle",
+    "title": "Review completed",
+    "description": "Your review of 'Fraud Detection AI' has been submitted successfully.",
+    "timestamp": "2025-07-14T12:00:00Z",
+    "time": "1 hour ago",
+    "isRead": false,
+    "ideaReference": "Fraud Detection AI"
+  },
+  {
+    "id": 8,
+    "type": "alert-triangle",
+    "title": "Overdue review reminder",
+    "description": "Review for 'Mobile Banking Lite' is now overdue by 2 days.",
+    "timestamp": "2025-07-14T06:00:00Z",
+    "time": "7 hours ago",
+    "isRead": false,
+    "ideaReference": "Mobile Banking Lite"
+  }
+]

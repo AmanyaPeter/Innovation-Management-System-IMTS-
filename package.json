@@ -1,0 +1,15 @@
+{
+  "name": "bou-innovation-management-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Bank of Uganda Innovation Management System — frontend prototype",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
+  }
+}

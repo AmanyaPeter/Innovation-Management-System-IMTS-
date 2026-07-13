@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Idea - Innovation Management System</title>
+  <link rel="icon" type="image/x-icon" href="../../boulogo.ico">
+  <link rel="stylesheet" href="../../css/styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-logo"><img src="../../boulogo.ico" alt="BOU"></div>
+      <div class="brand-text">Bank of Uganda<span>Innovation Management</span></div>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="dashboard.html"><span class="nav-icon"><i data-lucide="layout-dashboard" style="width:18px;height:18px;"></i></span><span>Dashboard</span></a></li>
+      <li><a href="submit-idea.html" class="active"><span class="nav-icon"><i data-lucide="plus" style="width:18px;height:18px;"></i></span><span>Submit Idea</span></a></li>
+      <li><a href="my-ideas.html"><span class="nav-icon"><i data-lucide="list" style="width:18px;height:18px;"></i></span><span>My Ideas</span></a></li>
+      <li><a href="notifications.html"><span class="nav-icon"><i data-lucide="mail" style="width:18px;height:18px;"></i></span><span>Notifications</span></a></li>
+      <li><a href="resources.html"><span class="nav-icon"><i data-lucide="book-open" style="width:18px;height:18px;"></i></span><span>Resources</span></a></li>
+      <li><a href="#"><span class="nav-icon"><i data-lucide="user" style="width:18px;height:18px;"></i></span><span>Profile</span></a></li>
+    </ul>
+    <div class="sidebar-footer">BOU Innovation System v1.0</div>
+  </aside>
+
+  <div class="main-wrapper">
+    <header class="top-header">
+      <div class="header-left">
+        <h2>Submit Innovation Idea</h2>
+      </div>
+      <div class="header-right">
+        <button class="notification-btn"><i data-lucide="bell" style="width:20px;height:20px;"></i><span class="badge-dot"></span></button>
+        <div class="user-profile">
+          <div class="avatar">B</div>
+          <span class="user-name">Brian</span>
+        </div>
+        <button class="logout-btn">Log out</button>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="stepper">
+        <div class="stepper-step active"><span class="step-number">1</span><span class="step-text">Innovator Information</span></div>
+        <div class="stepper-connector"></div>
+        <div class="stepper-step"><span class="step-number">2</span><span class="step-text">Innovation Idea</span></div>
+        <div class="stepper-connector"></div>
+        <div class="stepper-step"><span class="step-number">3</span><span class="step-text">Strategic Alignment</span></div>
+        <div class="stepper-connector"></div>
+        <div class="stepper-step"><span class="step-number">4</span><span class="step-text">Benefits and Implementation</span></div>
+      </div>
+
+      <div class="card">
+        <!-- Step 1 -->
+        <div class="form-page" id="step1">
+          <h3 style="margin-bottom:20px;font-size:16px;">Innovator Details</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fullName">Full Name</label>
+              <input type="text" id="fullName" class="form-control" value="Brian Ssempijja" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="text" id="email" class="form-control" value="brian@bou.or.ug" placeholder="Enter your email">
+            </div>
+          </div>
+
+          <fieldset class="submission-type">
+            <legend>Are you submitting this idea as an individual or a team?</legend>
+            <div class="form-radio-group" style="margin-top:10px;">
+              <label><input type="radio" name="submissionType" value="individual" checked onchange="toggleSubmissionType()"> Individual</label>
+              <label><input type="radio" name="submissionType" value="team" onchange="toggleSubmissionType()"> Team</label>
+            </div>
+          </fieldset>
+
+          <!-- Individual Section -->
+          <div id="individualSection" class="section-toggle visible">
+            <p class="helper-text">Provide your personal details as the idea submitter.</p>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="indivBusinessUnit">Business Unit *</label>
+                <select id="indivBusinessUnit" class="form-control">
+                  <option value="">Select business unit</option>
+                  <option>Accounts</option>
+                  <option>Agricultural Credit Facility &amp; Other Credit Schemes</option>
+                  <option>Administrative Services</option>
+                  <option>Banking</option>
+                  <option>Bank Resolution</option>
+                  <option>Board Affairs</option>
+                  <option>Commercial Banking</option>
+                  <option>Communications</option>
+                  <option>Currency</option>
+                  <option>Financial Markets</option>
+                  <option>Financial Stability</option>
+                  <option>Human Resources</option>
+                  <option>Information Technology</option>
+                  <option>Internal Audit</option>
+                  <option>Legal Services</option>
+                  <option>National Payments Systems</option>
+                  <option>Procurement &amp; Disposal</option>
+                  <option>Research</option>
+                  <option>Risk Management</option>
+                  <option>Statistics</option>
+                  <option>Supervision</option>
+                  <option>Other (Please specify)</option>
+                </select>
+                <div class="validation-feedback" id="indivBuFeedback">Please select your business unit.</div>
+              </div>
+              <div class="form-group">
+                <label for="indivStation">Duty Station *</label>
+                <select id="indivStation" class="form-control">
+                  <option value="">Select duty station</option>
+                  <option>Headquarters</option>
+                  <option>BoU Clinic / William Street</option>
+                  <option>Arua</option>
+                  <option>Fort Portal</option>
+                  <option>Gulu</option>
+                  <option>Jinja</option>
+                  <option>Kabale</option>
+                  <option>Lira</option>
+                  <option>Masaka</option>
+                  <option>Mbale</option>
+                  <option>Mbarara</option>
+                </select>
+                <div class="validation-feedback" id="indivStationFeedback">Please select your duty station.</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Age *</label>
+              <div class="radio-group-vertical" id="indivAge">
+                <label><input type="radio" name="indivAge" value="18-24"> 18–24</label>
+                <label><input type="radio" name="indivAge" value="25-34"> 25–34</label>
+                <label><input type="radio" name="indivAge" value="35-44"> 35–44</label>
+                <label><input type="radio" name="indivAge" value="45-54"> 45–54</label>
+                <label><input type="radio" name="indivAge" value="55+"> 55 and above</label>
+              </div>
+              <div class="validation-feedback" id="indivAgeFeedback">Please select your age bracket.</div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Gender *</label>
+                <div class="radio-group-vertical" id="indivGender">
+                  <label><input type="radio" name="indivGender" value="Male"> Male</label>
+                  <label><input type="radio" name="indivGender" value="Female"> Female</label>
+                </div>
+                <div class="validation-feedback" id="indivGenderFeedback">Please select your gender.</div>
+              </div>
+              <div class="form-group">
+                <label>Job Category / Rank *</label>
+                <div class="radio-group-vertical" id="indivRank">
+                  <label><input type="radio" name="indivRank" value="Executive Management"> Executive Management (Governor, Deputy Governor, Executive Directors)</label>
+                  <label><input type="radio" name="indivRank" value="Senior Management"> Senior Management (Directors and Deputy Directors)</label>
+                  <label><input type="radio" name="indivRank" value="Middle Management"> Middle Management (Team Leaders, SPBOs and PBOs)</label>
+                  <label><input type="radio" name="indivRank" value="Operational Management"> Operational Management (SBOIs, SBOIIs, BOIs and BOIIs)</label>
+                  <label><input type="radio" name="indivRank" value="Administrative Assistant"> Administrative Assistant</label>
+                  <label><input type="radio" name="indivRank" value="Clerical Staff"> Clerical Staff</label>
+                </div>
+                <div class="validation-feedback" id="indivRankFeedback">Please select your job rank.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team Section -->
+          <div id="teamSection" class="section-toggle">
+            <p class="helper-text">Provide the composition of members contributing to this innovation idea.</p>
+
+            <!-- 1. Team Members by Rank -->
+            <table class="matrix-table" id="teamRankMatrix">
+              <caption>1. Team Members by Rank</caption>
+              <thead>
+                <tr><th>Rank</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7+</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Executive Management</td><td><input type="radio" name="rank_Exec" value="1" class="matrix-radio"></td><td><input type="radio" name="rank_Exec" value="2" class="matrix-radio"></td><td><input type="radio" name="rank_Exec" value="3" class="matrix-radio"></td><td><input type="radio" name="rank_Exec" value="4" class="matrix-radio"></td><td><input type="radio" name="rank_Exec" value="5" class="matrix-radio"></td><td><input type="radio" name="rank_Exec" value="6" class="matrix-radio"></td><td><input type="radio" name="rank_Exec" value="7" class="matrix-radio"></td></tr>
+                <tr><td>Senior Management</td><td><input type="radio" name="rank_Senior" value="1" class="matrix-radio"></td><td><input type="radio" name="rank_Senior" value="2" class="matrix-radio"></td><td><input type="radio" name="rank_Senior" value="3" class="matrix-radio"></td><td><input type="radio" name="rank_Senior" value="4" class="matrix-radio"></td><td><input type="radio" name="rank_Senior" value="5" class="matrix-radio"></td><td><input type="radio" name="rank_Senior" value="6" class="matrix-radio"></td><td><input type="radio" name="rank_Senior" value="7" class="matrix-radio"></td></tr>
+                <tr><td>Middle Management</td><td><input type="radio" name="rank_Middle" value="1" class="matrix-radio"></td><td><input type="radio" name="rank_Middle" value="2" class="matrix-radio"></td><td><input type="radio" name="rank_Middle" value="3" class="matrix-radio"></td><td><input type="radio" name="rank_Middle" value="4" class="matrix-radio"></td><td><input type="radio" name="rank_Middle" value="5" class="matrix-radio"></td><td><input type="radio" name="rank_Middle" value="6" class="matrix-radio"></td><td><input type="radio" name="rank_Middle" value="7" class="matrix-radio"></td></tr>
+                <tr><td>Operational Management</td><td><input type="radio" name="rank_Oper" value="1" class="matrix-radio"></td><td><input type="radio" name="rank_Oper" value="2" class="matrix-radio"></td><td><input type="radio" name="rank_Oper" value="3" class="matrix-radio"></td><td><input type="radio" name="rank_Oper" value="4" class="matrix-radio"></td><td><input type="radio" name="rank_Oper" value="5" class="matrix-radio"></td><td><input type="radio" name="rank_Oper" value="6" class="matrix-radio"></td><td><input type="radio" name="rank_Oper" value="7" class="matrix-radio"></td></tr>
+                <tr><td>Administrative Assistant</td><td><input type="radio" name="rank_Admin" value="1" class="matrix-radio"></td><td><input type="radio" name="rank_Admin" value="2" class="matrix-radio"></td><td><input type="radio" name="rank_Admin" value="3" class="matrix-radio"></td><td><input type="radio" name="rank_Admin" value="4" class="matrix-radio"></td><td><input type="radio" name="rank_Admin" value="5" class="matrix-radio"></td><td><input type="radio" name="rank_Admin" value="6" class="matrix-radio"></td><td><input type="radio" name="rank_Admin" value="7" class="matrix-radio"></td></tr>
+                <tr><td>Clerical Staff</td><td><input type="radio" name="rank_Cler" value="1" class="matrix-radio"></td><td><input type="radio" name="rank_Cler" value="2" class="matrix-radio"></td><td><input type="radio" name="rank_Cler" value="3" class="matrix-radio"></td><td><input type="radio" name="rank_Cler" value="4" class="matrix-radio"></td><td><input type="radio" name="rank_Cler" value="5" class="matrix-radio"></td><td><input type="radio" name="rank_Cler" value="6" class="matrix-radio"></td><td><input type="radio" name="rank_Cler" value="7" class="matrix-radio"></td></tr>
+                <tr><td>Support Staff</td><td><input type="radio" name="rank_Supp" value="1" class="matrix-radio"></td><td><input type="radio" name="rank_Supp" value="2" class="matrix-radio"></td><td><input type="radio" name="rank_Supp" value="3" class="matrix-radio"></td><td><input type="radio" name="rank_Supp" value="4" class="matrix-radio"></td><td><input type="radio" name="rank_Supp" value="5" class="matrix-radio"></td><td><input type="radio" name="rank_Supp" value="6" class="matrix-radio"></td><td><input type="radio" name="rank_Supp" value="7" class="matrix-radio"></td></tr>
+              </tbody>
+            </table>
+
+            <!-- 2. Team Members by Age -->
+            <table class="matrix-table" id="teamAgeMatrix">
+              <caption>2. Team Members by Age</caption>
+              <thead>
+                <tr><th>Age Group</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7+</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>18-24</td><td><input type="radio" name="age_18" value="1" class="matrix-radio"></td><td><input type="radio" name="age_18" value="2" class="matrix-radio"></td><td><input type="radio" name="age_18" value="3" class="matrix-radio"></td><td><input type="radio" name="age_18" value="4" class="matrix-radio"></td><td><input type="radio" name="age_18" value="5" class="matrix-radio"></td><td><input type="radio" name="age_18" value="6" class="matrix-radio"></td><td><input type="radio" name="age_18" value="7" class="matrix-radio"></td></tr>
+                <tr><td>25-34</td><td><input type="radio" name="age_25" value="1" class="matrix-radio"></td><td><input type="radio" name="age_25" value="2" class="matrix-radio"></td><td><input type="radio" name="age_25" value="3" class="matrix-radio"></td><td><input type="radio" name="age_25" value="4" class="matrix-radio"></td><td><input type="radio" name="age_25" value="5" class="matrix-radio"></td><td><input type="radio" name="age_25" value="6" class="matrix-radio"></td><td><input type="radio" name="age_25" value="7" class="matrix-radio"></td></tr>
+                <tr><td>35-44</td><td><input type="radio" name="age_35" value="1" class="matrix-radio"></td><td><input type="radio" name="age_35" value="2" class="matrix-radio"></td><td><input type="radio" name="age_35" value="3" class="matrix-radio"></td><td><input type="radio" name="age_35" value="4" class="matrix-radio"></td><td><input type="radio" name="age_35" value="5" class="matrix-radio"></td><td><input type="radio" name="age_35" value="6" class="matrix-radio"></td><td><input type="radio" name="age_35" value="7" class="matrix-radio"></td></tr>
+                <tr><td>45-54</td><td><input type="radio" name="age_45" value="1" class="matrix-radio"></td><td><input type="radio" name="age_45" value="2" class="matrix-radio"></td><td><input type="radio" name="age_45" value="3" class="matrix-radio"></td><td><input type="radio" name="age_45" value="4" class="matrix-radio"></td><td><input type="radio" name="age_45" value="5" class="matrix-radio"></td><td><input type="radio" name="age_45" value="6" class="matrix-radio"></td><td><input type="radio" name="age_45" value="7" class="matrix-radio"></td></tr>
+                <tr><td>55 and above</td><td><input type="radio" name="age_55" value="1" class="matrix-radio"></td><td><input type="radio" name="age_55" value="2" class="matrix-radio"></td><td><input type="radio" name="age_55" value="3" class="matrix-radio"></td><td><input type="radio" name="age_55" value="4" class="matrix-radio"></td><td><input type="radio" name="age_55" value="5" class="matrix-radio"></td><td><input type="radio" name="age_55" value="6" class="matrix-radio"></td><td><input type="radio" name="age_55" value="7" class="matrix-radio"></td></tr>
+              </tbody>
+            </table>
+
+            <!-- 3. Team Members by Gender -->
+            <table class="matrix-table" id="teamGenderMatrix">
+              <caption>3. Team Members by Gender</caption>
+              <thead>
+                <tr><th>Gender</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7+</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Male</td><td><input type="radio" name="gender_Male" value="1" class="matrix-radio"></td><td><input type="radio" name="gender_Male" value="2" class="matrix-radio"></td><td><input type="radio" name="gender_Male" value="3" class="matrix-radio"></td><td><input type="radio" name="gender_Male" value="4" class="matrix-radio"></td><td><input type="radio" name="gender_Male" value="5" class="matrix-radio"></td><td><input type="radio" name="gender_Male" value="6" class="matrix-radio"></td><td><input type="radio" name="gender_Male" value="7" class="matrix-radio"></td></tr>
+                <tr><td>Female</td><td><input type="radio" name="gender_Female" value="1" class="matrix-radio"></td><td><input type="radio" name="gender_Female" value="2" class="matrix-radio"></td><td><input type="radio" name="gender_Female" value="3" class="matrix-radio"></td><td><input type="radio" name="gender_Female" value="4" class="matrix-radio"></td><td><input type="radio" name="gender_Female" value="5" class="matrix-radio"></td><td><input type="radio" name="gender_Female" value="6" class="matrix-radio"></td><td><input type="radio" name="gender_Female" value="7" class="matrix-radio"></td></tr>
+              </tbody>
+            </table>
+
+            <!-- 4. Team Members by Station -->
+            <table class="matrix-table" id="teamStationMatrix">
+              <caption>4. Team Members by Station</caption>
+              <thead>
+                <tr><th>Station</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7+</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Headquarters</td><td><input type="radio" name="stat_HQ" value="1" class="matrix-radio"></td><td><input type="radio" name="stat_HQ" value="2" class="matrix-radio"></td><td><input type="radio" name="stat_HQ" value="3" class="matrix-radio"></td><td><input type="radio" name="stat_HQ" value="4" class="matrix-radio"></td><td><input type="radio" name="stat_HQ" value="5" class="matrix-radio"></td><td><input type="radio" name="stat_HQ" value="6" class="matrix-radio"></td><td><input type="radio" name="stat_HQ" value="7" class="matrix-radio"></td></tr>
+                <tr><td>BoU Clinic / William Street</td><td><input type="radio" name="stat_Clinic" value="1" class="matrix-radio"></td><td><input type="radio" name="stat_Clinic" value="2" class="matrix-radio"></td><td><input type="radio" name="stat_Clinic" value="3" class="matrix-radio"></td><td><input type="radio" name="stat_Clinic" value="4" class="matrix-radio"></td><td><input type="radio" name="stat_Clinic" value="5" class="matrix-radio"></td><td><input type="radio" name="stat_Clinic" value="6" class="matrix-radio"></td><td><input type="radio" name="stat_Clinic" value="7" class="matrix-radio"></td></tr>
+                <tr><td>Arua</td><td><input type="radio" name="stat_Arua" value="1" class="matrix-radio"></td><td><input type="radio" name="stat_Arua" value="2" class="matrix-radio"></td><td><input type="radio" name="stat_Arua" value="3" class="matrix-radio"></td><td><input type="radio" name="stat_Arua" value="4" class="matrix-radio"></td><td><input type="radio" name="stat_Arua" value="5" class="matrix-radio"></td><td><input type="radio" name="stat_Arua" value="6" class="matrix-radio"></td><td><input type="radio" name="stat_Arua" value="7" class="matrix-radio"></td></tr>
+                <tr><td>Gulu</td><td><input type="radio" name="stat_Gulu" value="1" class="matrix-radio"></td><td><input type="radio" name="stat_Gulu" value="2" class="matrix-radio"></td><td><input type="radio" name="stat_Gulu" value="3" class="matrix-radio"></td><td><input type="radio" name="stat_Gulu" value="4" class="matrix-radio"></td><td><input type="radio" name="stat_Gulu" value="5" class="matrix-radio"></td><td><input type="radio" name="stat_Gulu" value="6" class="matrix-radio"></td><td><input type="radio" name="stat_Gulu" value="7" class="matrix-radio"></td></tr>
+                <tr><td>Jinja</td><td><input type="radio" name="stat_Jinja" value="1" class="matrix-radio"></td><td><input type="radio" name="stat_Jinja" value="2" class="matrix-radio"></td><td><input type="radio" name="stat_Jinja" value="3" class="matrix-radio"></td><td><input type="radio" name="stat_Jinja" value="4" class="matrix-radio"></td><td><input type="radio" name="stat_Jinja" value="5" class="matrix-radio"></td><td><input type="radio" name="stat_Jinja" value="6" class="matrix-radio"></td><td><input type="radio" name="stat_Jinja" value="7" class="matrix-radio"></td></tr>
+                <tr><td>Kabale</td><td><input type="radio" name="stat_Kabale" value="1" class="matrix-radio"></td><td><input type="radio" name="stat_Kabale" value="2" class="matrix-radio"></td><td><input type="radio" name="stat_Kabale" value="3" class="matrix-radio"></td><td><input type="radio" name="stat_Kabale" value="4" class="matrix-radio"></td><td><input type="radio" name="stat_Kabale" value="5" class="matrix-radio"></td><td><input type="radio" name="stat_Kabale" value="6" class="matrix-radio"></td><td><input type="radio" name="stat_Kabale" value="7" class="matrix-radio"></td></tr>
+                <tr><td>Lira</td><td><input type="radio" name="stat_Lira" value="1" class="matrix-radio"></td><td><input type="radio" name="stat_Lira" value="2" class="matrix-radio"></td><td><input type="radio" name="stat_Lira" value="3" class="matrix-radio"></td><td><input type="radio" name="stat_Lira" value="4" class="matrix-radio"></td><td><input type="radio" name="stat_Lira" value="5" class="matrix-radio"></td><td><input type="radio" name="stat_Lira" value="6" class="matrix-radio"></td><td><input type="radio" name="stat_Lira" value="7" class="matrix-radio"></td></tr>
+                <tr><td>Masaka</td><td><input type="radio" name="stat_Masaka" value="1" class="matrix-radio"></td><td><input type="radio" name="stat_Masaka" value="2" class="matrix-radio"></td><td><input type="radio" name="stat_Masaka" value="3" class="matrix-radio"></td><td><input type="radio" name="stat_Masaka" value="4" class="matrix-radio"></td><td><input type="radio" name="stat_Masaka" value="5" class="matrix-radio"></td><td><input type="radio" name="stat_Masaka" value="6" class="matrix-radio"></td><td><input type="radio" name="stat_Masaka" value="7" class="matrix-radio"></td></tr>
+                <tr><td>Mbale</td><td><input type="radio" name="stat_Mbale" value="1" class="matrix-radio"></td><td><input type="radio" name="stat_Mbale" value="2" class="matrix-radio"></td><td><input type="radio" name="stat_Mbale" value="3" class="matrix-radio"></td><td><input type="radio" name="stat_Mbale" value="4" class="matrix-radio"></td><td><input type="radio" name="stat_Mbale" value="5" class="matrix-radio"></td><td><input type="radio" name="stat_Mbale" value="6" class="matrix-radio"></td><td><input type="radio" name="stat_Mbale" value="7" class="matrix-radio"></td></tr>
+                <tr><td>Mbarara</td><td><input type="radio" name="stat_Mbarara" value="1" class="matrix-radio"></td><td><input type="radio" name="stat_Mbarara" value="2" class="matrix-radio"></td><td><input type="radio" name="stat_Mbarara" value="3" class="matrix-radio"></td><td><input type="radio" name="stat_Mbarara" value="4" class="matrix-radio"></td><td><input type="radio" name="stat_Mbarara" value="5" class="matrix-radio"></td><td><input type="radio" name="stat_Mbarara" value="6" class="matrix-radio"></td><td><input type="radio" name="stat_Mbarara" value="7" class="matrix-radio"></td></tr>
+                <tr><td>Fort Portal</td><td><input type="radio" name="stat_Fort" value="1" class="matrix-radio"></td><td><input type="radio" name="stat_Fort" value="2" class="matrix-radio"></td><td><input type="radio" name="stat_Fort" value="3" class="matrix-radio"></td><td><input type="radio" name="stat_Fort" value="4" class="matrix-radio"></td><td><input type="radio" name="stat_Fort" value="5" class="matrix-radio"></td><td><input type="radio" name="stat_Fort" value="6" class="matrix-radio"></td><td><input type="radio" name="stat_Fort" value="7" class="matrix-radio"></td></tr>
+              </tbody>
+            </table>
+
+            <div class="validation-feedback" id="teamMatrixFeedback" style="margin-top:8px;">Please complete at least one team composition matrix.</div>
+          </div>
+
+          <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:24px;">
+            <button class="btn btn-secondary save-draft-btn">Save Draft</button>
+            <button class="btn btn-primary" onclick="validateStep1(); if(!this.dataset.blocked) nextStep(1);">Next</button>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="form-page" id="step2" style="display:none;">
+          <h3 style="margin-bottom:20px;font-size:16px;">Innovation Idea</h3>
+          <div class="form-group">
+            <label>Idea Title *</label>
+            <p style="font-size:12px;color:#888;margin-bottom:6px;">Provide a concise and descriptive title for your innovation.</p>
+            <input type="text" class="form-control" placeholder="Enter a clear title for your idea">
+          </div>
+          <div class="form-group">
+            <label>Executive Summary *</label>
+            <p style="font-size:12px;color:#888;margin-bottom:6px;">Briefly describe your idea, how it works, and the value it is intended to create.</p>
+            <textarea class="form-control" rows="4" placeholder="Describe your idea, how it works, and the value it creates"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Problem or Opportunity *</label>
+            <p style="font-size:12px;color:#888;margin-bottom:6px;">What challenge, gap, or opportunity does this idea address? What prompted you to develop this idea?</p>
+            <textarea class="form-control" rows="4" placeholder="Describe the challenge, gap, or opportunity"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Proposed Solution *</label>
+            <p style="font-size:12px;color:#888;margin-bottom:6px;">Describe the proposed product, service, process, technology, policy, or business model. Explain how it addresses the identified problem or opportunity.</p>
+            <textarea class="form-control" rows="4" placeholder="Describe your proposed solution"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Attachments</label>
+            <div class="file-upload-area">
+              <div class="upload-icon"><i data-lucide="paperclip" style="width:32px;height:32px;"></i></div>
+              <p>Drag & drop files here or click to browse</p>
+              <p style="font-size:11px;color:#aaa;margin-top:4px;">PDF, DOC, XLS, PNG (max 10MB)</p>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:24px;">
+            <button class="btn btn-secondary" onclick="prevStep(2)">Back</button>
+            <div style="display:flex;gap:10px;">
+              <button class="btn btn-secondary save-draft-btn">Save Draft</button>
+              <button class="btn btn-primary" onclick="nextStep(2)">Next</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="form-page" id="step3" style="display:none;">
+          <h3 style="margin-bottom:20px;font-size:16px;">Strategic Alignment</h3>
+          <div class="form-group">
+            <label>Strategic Objective(s) Supported *</label>
+            <p style="font-size:12px;color:#888;margin-bottom:6px;">Select the strategic objective(s) that best align with your innovation.</p>
+            <div class="radio-group-vertical">
+              <label><input type="radio" name="strategicObj" value="Enhance Stakeholder Confidence"> Enhance Stakeholder Confidence</label>
+              <label><input type="radio" name="strategicObj" value="Enhance Price Stability"> Enhance Price Stability</label>
+              <label><input type="radio" name="strategicObj" value="Enhance Financial System Soundness and Resilience"> Enhance Financial System Soundness and Resilience</label>
+              <label><input type="radio" name="strategicObj" value="Enhance Financial System Development"> Enhance Financial System Development</label>
+              <label><input type="radio" name="strategicObj" value="Enhance Financial Performance"> Enhance Financial Performance</label>
+              <label><input type="radio" name="strategicObj" value="Improve Efficiency and Reliability of Bank Processes"> Improve Efficiency and Reliability of Bank Processes</label>
+              <label><input type="radio" name="strategicObj" value="Improve Employee Competence"> Improve Employee Competence</label>
+              <label><input type="radio" name="strategicObj" value="Improve Organisational Systems and Infrastructure"> Improve Organisational Systems and Infrastructure</label>
+              <label><input type="radio" name="strategicObj" value="Enhance Organisational Culture"> Enhance Organisational Culture</label>
+              <label><input type="radio" name="strategicObj" value="Other"> Other (please specify)</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Innovation Category *</label>
+            <p style="font-size:12px;color:#888;margin-bottom:6px;">Select the category that best describes your innovation.</p>
+            <div class="radio-group-vertical">
+              <label><input type="radio" name="innovationCat" value="Product/Service"> <strong>Product / Service</strong> &mdash; New or significantly improved products or services that enhance value delivered to stakeholders.</label>
+              <label><input type="radio" name="innovationCat" value="Process"> <strong>Process</strong> &mdash; Improved workflows or operational methods that increase efficiency, effectiveness, transparency, or resilience.</label>
+              <label><input type="radio" name="innovationCat" value="Business Model"> <strong>Business Model</strong> &mdash; New approaches to delivering the Bank's mandate, including partnerships, service delivery models, or value creation mechanisms.</label>
+              <label><input type="radio" name="innovationCat" value="Policy/Governance"> <strong>Policy / Governance</strong> &mdash; Innovations involving policies, governance structures, regulations, decision-making processes, or institutional frameworks.</label>
+              <label><input type="radio" name="innovationCat" value="Technology/System"> <strong>Technology / System</strong> &mdash; Application or introduction of new technologies, digital solutions, STEM innovations, or system capabilities.</label>
+              <label><input type="radio" name="innovationCat" value="Sustainability"> <strong>Sustainability</strong> &mdash; Innovations that promote environmental sustainability, social impact, financial inclusion, or strengthen public trust.</label>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:24px;">
+            <button class="btn btn-secondary" onclick="prevStep(3)">Back</button>
+            <div style="display:flex;gap:10px;">
+              <button class="btn btn-secondary save-draft-btn">Save Draft</button>
+              <button class="btn btn-primary" onclick="nextStep(3)">Next</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="form-page" id="step4" style="display:none;">
+          <h3 style="margin-bottom:20px;font-size:16px;">Benefits and Implementation</h3>
+          <div class="form-group">
+            <label>Expected Benefits / Value Addition *</label>
+            <p style="font-size:12px;color:#888;margin-bottom:6px;">Describe the expected benefits of the innovation. Consider operational, financial, customer, regulatory, or strategic value.</p>
+            <textarea class="form-control" rows="4" placeholder="Describe the expected benefits"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Key Enablers / Resources Required *</label>
+            <p style="font-size:12px;color:#888;margin-bottom:6px;">Identify the resources required for successful implementation. Examples include: ICT support, funding or budget, skills or training, cross-functional collaboration, external partnerships, infrastructure or equipment.</p>
+            <textarea class="form-control" rows="4" placeholder="List the resources and enablers needed"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Implementation Approach *</label>
+            <p style="font-size:12px;color:#888;margin-bottom:6px;">Briefly outline how the innovation could be developed and implemented. Examples include: Proof of Concept (PoC), Prototype, Pilot implementation, Phased rollout, Full-scale deployment.</p>
+            <textarea class="form-control" rows="4" placeholder="Outline your implementation approach"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Expected Impact Indicators *</label>
+            <p style="font-size:12px;color:#888;margin-bottom:6px;">Describe how success will be measured. Examples include: reduction in processing time, cost savings, productivity improvements, customer or stakeholder satisfaction, revenue generated or costs avoided, risk reduction, compliance improvements, adoption or usage rates.</p>
+            <textarea class="form-control" rows="4" placeholder="Describe how success will be measured"></textarea>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:24px;">
+            <button class="btn btn-secondary" onclick="prevStep(4)">Back</button>
+            <div style="display:flex;gap:10px;">
+              <button class="btn btn-secondary save-draft-btn">Save Draft</button>
+               <button class="btn btn-success submit-idea-btn">Submit Idea</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../services/ideaService.js"></script>
+  <script src="../../services/userService.js"></script>
+  <script src="../../services/notificationService.js"></script>
+  <script src="../../services/resourceService.js"></script>
+  <script src="../../services/categoryService.js"></script>
+  <script src="../../services/activityService.js"></script>
+  <script src="../../utils/toast.js"></script>
+  <script src="../../utils/search.js"></script>
+  <script src="../../utils/sort.js"></script>
+  <script src="../../utils/filter.js"></script>
+  <script src="../../utils/pagination.js"></script>
+  <script src="../../utils/table.js"></script>
+  <script src="../../utils/modal.js"></script>
+  <script src="../../js/auth.js"></script>
+  <script src="../../js/app.js"></script>
+  <script src="../../js/submit-idea.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
