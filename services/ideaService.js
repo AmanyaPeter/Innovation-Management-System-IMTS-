@@ -1,24 +1,43 @@
 var IdeaService = (function () {
-  var BASE_URL = '/data/ideas.json';
+  var BASE_URL = '/api/ideas';
+
+  function getAuthHeaders() {
+    var headers = {
+      'Content-Type': 'application/json'
+    };
+    if (typeof AuthSystem !== 'undefined') {
+      var user = AuthSystem.getCurrentUser();
+      if (user && user.accessToken) {
+        headers['Authorization'] = 'Bearer ' + user.accessToken;
+      }
+    }
+    return headers;
+  }
 
   function getIdeas() {
-    return fetch(BASE_URL).then(function (res) {
+    return fetch(BASE_URL, {
+      headers: getAuthHeaders()
+    }).then(function (res) {
       if (!res.ok) throw new Error('Failed to fetch ideas');
       return res.json();
     });
   }
 
   function getIdeaById(id) {
-    return getIdeas().then(function (ideas) {
-      var idea = ideas.find(function (i) { return i.id === id; });
-      if (!idea) throw new Error('Idea not found: ' + id);
-      return idea;
+    return fetch(BASE_URL + '/' + id, {
+      headers: getAuthHeaders()
+    }).then(function (res) {
+      if (!res.ok) throw new Error('Idea not found: ' + id);
+      return res.json();
     });
   }
 
   function getIdeasBySubmitter(email) {
-    return getIdeas().then(function (ideas) {
-      return ideas.filter(function (i) { return i.submitterEmail === email; });
+    return fetch(BASE_URL + '?submitterEmail=' + encodeURIComponent(email), {
+      headers: getAuthHeaders()
+    }).then(function (res) {
+      if (!res.ok) throw new Error('Failed to fetch submitter ideas');
+      return res.json();
     });
   }
 
@@ -53,21 +72,23 @@ var IdeaService = (function () {
   }
 
   function updateIdea(id, updates) {
-    return getIdeas().then(function (ideas) {
-      var index = ideas.findIndex(function (i) { return i.id === id; });
-      if (index === -1) throw new Error('Idea not found: ' + id);
-      ideas[index] = Object.assign({}, ideas[index], updates);
-      ideas[index].lastUpdated = new Date().toISOString();
-      return ideas[index];
+    return fetch(BASE_URL + '/' + id, {
+      method: 'PUT',
+      headers: getAuthHeaders(),
+      body: JSON.stringify(updates)
+    }).then(function (res) {
+      if (!res.ok) throw new Error('Failed to update idea');
+      return res.json();
     });
   }
 
   function deleteIdea(id) {
-    return getIdeas().then(function (ideas) {
-      var index = ideas.findIndex(function (i) { return i.id === id; });
-      if (index === -1) throw new Error('Idea not found: ' + id);
-      ideas.splice(index, 1);
-      return true;
+    return fetch(BASE_URL + '/' + id + '/retract', {
+      method: 'POST',
+      headers: getAuthHeaders()
+    }).then(function (res) {
+      if (!res.ok) throw new Error('Failed to retract idea');
+      return res.json();
     });
   }
 
@@ -93,9 +114,9 @@ var IdeaService = (function () {
       var q = query.toLowerCase().trim();
       return ideas.filter(function (i) {
         return i.title.toLowerCase().indexOf(q) !== -1 ||
-               i.submitterName.toLowerCase().indexOf(q) !== -1 ||
-               i.department.toLowerCase().indexOf(q) !== -1 ||
-               i.category.toLowerCase().indexOf(q) !== -1;
+               (i.submitterName && i.submitterName.toLowerCase().indexOf(q) !== -1) ||
+               (i.department && i.department.toLowerCase().indexOf(q) !== -1) ||
+               (i.category && i.category.toLowerCase().indexOf(q) !== -1);
       });
     });
   }

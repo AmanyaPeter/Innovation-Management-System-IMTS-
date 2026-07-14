@@ -1,5 +1,18 @@
 var CategoryService = (function () {
-  var BASE_URL = '/data/categories.json';
+  var BASE_URL = '/api/categories';
+
+  function getAuthHeaders() {
+    var headers = {
+      'Content-Type': 'application/json'
+    };
+    if (typeof AuthSystem !== 'undefined') {
+      var user = AuthSystem.getCurrentUser();
+      if (user && user.accessToken) {
+        headers['Authorization'] = 'Bearer ' + user.accessToken;
+      }
+    }
+    return headers;
+  }
 
   function getCategories() {
     var stored = localStorage.getItem('bou_categories');
@@ -8,7 +21,9 @@ var CategoryService = (function () {
         return Promise.resolve(JSON.parse(stored));
       } catch (e) {}
     }
-    return fetch(BASE_URL).then(function (res) {
+    return fetch(BASE_URL, {
+      headers: getAuthHeaders()
+    }).then(function (res) {
       if (!res.ok) throw new Error('Failed to fetch categories');
       return res.json();
     }).then(function (categories) {
@@ -19,7 +34,7 @@ var CategoryService = (function () {
 
   function getActiveCategories() {
     return getCategories().then(function (cats) {
-      return cats.filter(function (c) { return c.status === 'Active'; });
+      return cats.filter(function (c) { return c.isActive === true || c.status === 'Active'; });
     });
   }
 

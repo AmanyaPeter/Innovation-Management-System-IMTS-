@@ -1,3 +1,17 @@
 node_modules/
 dist/
 .DS_Store
+
+# .NET core and building artifacts
+bin/
+obj/
+*.user
+*.suo
+auth_service.log
+ideas_service.log
+vite_dev.log
+
+# SQLite database files
+*.db
+*.db-shm
+*.db-wal
