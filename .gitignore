@@ -8,4 +8,11 @@ obj/
 *.user
 *.suo
 auth_service.log
+ideas_service.log
+vite_dev.log
+
+# SQLite database files
+*.db
+*.db-shm
+*.db-wal
 vite_dev.log

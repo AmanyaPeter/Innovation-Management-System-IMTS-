@@ -246,6 +246,54 @@ app.MapGet("/api/users", (HttpContext context) =>
     return Results.Ok(users);
 });
 
+// Lightweight API Gateway Proxy forwarding `/api/ideas` and `/api/categories` to Port 5002
+app.Map("/api/ideas", async (HttpContext context) =>
+{
+    var targetUri = new Uri("http://localhost:5002" + context.Request.Path + context.Request.QueryString);
+    await ProxyRequest(context, targetUri);
+});
+
+app.Map("/api/categories", async (HttpContext context) =>
+{
+    var targetUri = new Uri("http://localhost:5002" + context.Request.Path + context.Request.QueryString);
+    await ProxyRequest(context, targetUri);
+});
+
+async Task ProxyRequest(HttpContext context, Uri targetUri)
+{
+    using var client = new HttpClient();
+    var request = new HttpRequestMessage(new HttpMethod(context.Request.Method), targetUri);
+
+    if (context.Request.ContentLength > 0)
+    {
+        request.Content = new StreamContent(context.Request.Body);
+        request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse(context.Request.ContentType ?? "application/json");
+    }
+
+    foreach (var header in context.Request.Headers)
+    {
+        if (header.Key.Equals("Host", StringComparison.OrdinalIgnoreCase)) continue;
+        request.Headers.TryAddWithoutValidation(header.Key, header.Value.ToArray());
+    }
+
+    var response = await client.SendAsync(request);
+    context.Response.StatusCode = (int)response.StatusCode;
+
+    foreach (var header in response.Headers)
+    {
+        if (header.Key.Equals("Transfer-Encoding", StringComparison.OrdinalIgnoreCase)) continue;
+        if (header.Key.Equals("Connection", StringComparison.OrdinalIgnoreCase)) continue;
+        context.Response.Headers[header.Key] = header.Value.ToArray();
+    }
+    foreach (var header in response.Content.Headers)
+    {
+        if (header.Key.Equals("Transfer-Encoding", StringComparison.OrdinalIgnoreCase)) continue;
+        context.Response.Headers[header.Key] = header.Value.ToArray();
+    }
+
+    await response.Content.CopyToAsync(context.Response.Body);
+}
+
 app.Run();
 
 // Data contract DTOs
