@@ -1,0 +1,110 @@
+@model dynamic
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Staff Dashboard";
+}
+
+<div class="welcome-bar">
+    <h1>Welcome, @User.FindFirst("DisplayName")?.Value</h1>
+    <p>Track and manage your innovation submissions</p>
+</div>
+
+<div class="summary-cards">
+    <div class="summary-card">
+        <div class="card-label">Total Ideas Submitted</div>
+        <div class="card-value">@ViewBag.TotalSubmitted</div>
+        <div class="card-sub">All time</div>
+    </div>
+    <div class="summary-card">
+        <div class="card-label">Ideas Under Review</div>
+        <div class="card-value">@ViewBag.UnderReview</div>
+        <div class="card-sub">Awaiting feedback</div>
+    </div>
+    <div class="summary-card">
+        <div class="card-label">Approved Ideas</div>
+        <div class="card-value">@ViewBag.Approved</div>
+        <div class="card-sub">Ready for next stage</div>
+    </div>
+    <div class="summary-card">
+        <div class="card-label">Completed Innovations</div>
+        <div class="card-value">@ViewBag.Completed</div>
+        <div class="card-sub">Successfully deployed</div>
+    </div>
+</div>
+
+<div class="two-col-grid" style="margin-top: 24px;">
+    <div class="card">
+        <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3>Recent Submissions</h3>
+            <a href="/Ideas/MyIdeas" style="font-size: 13px; color: var(--color-primary); text-decoration: none; font-weight: 500;">View All</a>
+        </div>
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Idea Title</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ViewBag.RecentSubmissions != null && ViewBag.RecentSubmissions.Count > 0)
+                    {
+                        foreach (var idea in ViewBag.RecentSubmissions)
+                        {
+                            <tr onclick="location.href='/Ideas/Details/@idea.Id'" style="cursor: pointer;">
+                                <td><strong>@idea.Title</strong></td>
+                                <td>@idea.Category</td>
+                                <td>@await Component.InvokeAsync("StatusBadge", new { status = idea.Status })</td>
+                                <td>@idea.DateSubmitted</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4" style="text-align: center; color: var(--text-tertiary); padding: 24px;">No ideas submitted yet.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3>Recent Notifications</h3>
+            <a href="/Home/Notifications" style="font-size: 13px; color: var(--color-primary); text-decoration: none; font-weight: 500;">View All</a>
+        </div>
+
+        @if (ViewBag.RecentNotifications != null && ViewBag.RecentNotifications.Count > 0)
+        {
+            foreach (var notif in ViewBag.RecentNotifications)
+            {
+                <div class="notification-item" style="display: flex; align-items: start; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--color-border);">
+                    <div class="notif-icon" style="background-color: var(--color-surface-muted); color: var(--color-primary); border-radius: 50%; padding: 8px; display: flex; align-items: center; justify-content: center;">
+                        <i data-lucide="mail" style="width:16px;height:16px;"></i>
+                    </div>
+                    <div class="notif-content" style="flex: 1;">
+                        <div class="notif-title" style="font-weight: 600; font-size: 14px;">@notif.Title</div>
+                        <div class="notif-desc" style="font-size: 13px; color: var(--text-secondary); margin-top: 2px;">@notif.Message</div>
+                        <div class="notif-time" style="font-size: 11px; color: var(--text-tertiary); margin-top: 4px;">@notif.Timestamp</div>
+                    </div>
+                    @if (!notif.IsRead)
+                    {
+                        <div class="unread-dot" style="width: 8px; height: 8px; background-color: var(--color-primary); border-radius: 50%; margin-top: 6px;"></div>
+                    }
+                </div>
+            }
+        }
+        else
+        {
+            <div style="text-align: center; color: var(--text-tertiary); padding: 24px;">No notifications.</div>
+        }
+    </div>
+</div>
+
+<button class="btn btn-primary quick-action-btn" onclick="location.href='/Ideas/Submit'" style="width:100%; padding:14px; font-size:15px; margin-top: 24px; display: flex; align-items: center; justify-content: center; gap: 8px; background-color: var(--color-primary); color: white; border: none; border-radius: var(--radius-md); font-weight: 600; cursor: pointer;">
+    <i data-lucide="plus" style="width:16px;height:16px;"></i> Submit New Idea
+</button>

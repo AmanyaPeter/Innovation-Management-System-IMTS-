@@ -1,0 +1,191 @@
+@model Imts.Web.Services.IdeaResponse
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Idea Details";
+}
+
+<div style="margin-bottom: 24px;">
+    <a href="/Ideas/MyIdeas" style="display: inline-flex; align-items: center; gap: 6px; color: var(--color-primary); text-decoration: none; font-weight: 500; font-size: 14px; margin-bottom: 12px;">
+        <i data-lucide="arrow-left" style="width:16px;height:16px;"></i> Back to list
+    </a>
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+        <h2 style="margin: 0; color: var(--color-primary);">@Model.Title</h2>
+        <div style="display: flex; gap: 12px; align-items: center;">
+            <span style="font-weight: 600; color: var(--text-secondary);">Stage: <strong>@Model.Stage</strong></span>
+            @await Component.InvokeAsync("StatusBadge", new { status = Model.Status })
+        </div>
+    </div>
+</div>
+
+<!-- Progress Stages Tracker -->
+<div class="card" style="padding: 24px; margin-bottom: 24px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background-color: var(--color-white);">
+    <h4 style="margin-top: 0; margin-bottom: 16px; font-weight: 600;">Workflow Progression</h4>
+    <div style="display: flex; justify-content: space-between; align-items: center; position: relative; margin: 20px 0;">
+        @{
+            var stages = new[] { "Submitted", "Concept Development", "Experimentation", "Deployment", "Closed" };
+            var activeIndex = Array.IndexOf(stages, Model.Stage);
+            if (activeIndex == -1) activeIndex = 0;
+        }
+        @for (int i = 0; i < stages.Length; i++)
+        {
+            var isCompleted = i < activeIndex || Model.Status == "Approved" && Model.Stage == "Closed";
+            var isActive = i == activeIndex;
+            var circleColor = isCompleted ? "var(--color-success)" : (isActive ? "var(--color-primary)" : "var(--color-border)");
+            var textColor = isCompleted ? "var(--color-success)" : (isActive ? "var(--color-primary)" : "var(--text-tertiary)");
+
+            <div style="display: flex; flex-direction: column; align-items: center; position: relative; flex: 1; text-align: center;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background-color: @circleColor; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; z-index: 2; box-shadow: 0 0 0 4px white;">
+                    @if (isCompleted)
+                    {
+                        <i data-lucide="check" style="width:16px;height:16px;"></i>
+                    }
+                    else
+                    {
+                        <span>@(i + 1)</span>
+                    }
+                </div>
+                <span style="font-size: 12px; font-weight: 600; color: @textColor; margin-top: 8px;">@stages[i]</span>
+            </div>
+        }
+    </div>
+</div>
+
+<div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px; align-items: start;">
+    <!-- Left Column: Details -->
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+        <div class="card" style="padding: 24px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background-color: var(--color-white);">
+            <h3 style="margin-top: 0; border-bottom: 2px solid var(--color-border); padding-bottom: 8px; color: var(--color-primary); font-size: 18px;">Proposal Details</h3>
+
+            <div style="margin-top: 16px;">
+                <h5 style="margin-bottom: 6px; font-weight: 600;">Executive Summary</h5>
+                <p style="margin: 0; font-size: 14px; color: var(--text-secondary); line-height: 1.5; text-align: justify;">@Model.ExecutiveSummary</p>
+            </div>
+
+            <div style="margin-top: 16px;">
+                <h5 style="margin-bottom: 6px; font-weight: 600;">Problem or Opportunity</h5>
+                <p style="margin: 0; font-size: 14px; color: var(--text-secondary); line-height: 1.5; text-align: justify;">@Model.ProblemOrOpportunity</p>
+            </div>
+
+            <div style="margin-top: 16px;">
+                <h5 style="margin-bottom: 6px; font-weight: 600;">Proposed Solution</h5>
+                <p style="margin: 0; font-size: 14px; color: var(--text-secondary); line-height: 1.5; text-align: justify;">@Model.ProposedSolution</p>
+            </div>
+
+            <div style="margin-top: 16px;">
+                <h5 style="margin-bottom: 6px; font-weight: 600;">Strategic Alignment & Objectives</h5>
+                <p style="margin: 0; font-size: 14px; color: var(--text-secondary); line-height: 1.5; text-align: justify;">@Model.StrategicObjective</p>
+            </div>
+
+            <div style="margin-top: 16px;">
+                <h5 style="margin-bottom: 6px; font-weight: 600;">SDG Alignment & Sdg Contribution</h5>
+                <p style="margin: 0; font-size: 14px; color: var(--text-secondary); line-height: 1.5;">@Model.SdgContribution</p>
+            </div>
+
+            <div style="margin-top: 16px;">
+                <h5 style="margin-bottom: 6px; font-weight: 600;">Expected Benefits</h5>
+                <p style="margin: 0; font-size: 14px; color: var(--text-secondary); line-height: 1.5;">@Model.ExpectedBenefits</p>
+            </div>
+
+            <div style="margin-top: 16px;">
+                <h5 style="margin-bottom: 6px; font-weight: 600;">Key Enablers & Resource Needs</h5>
+                <p style="margin: 0; font-size: 14px; color: var(--text-secondary); line-height: 1.5;">@Model.KeyEnablers</p>
+            </div>
+
+            <div style="margin-top: 16px;">
+                <h5 style="margin-bottom: 6px; font-weight: 600;">Implementation Approach</h5>
+                <p style="margin: 0; font-size: 14px; color: var(--text-secondary); line-height: 1.5;">@Model.ImplementationApproach</p>
+            </div>
+
+            <div style="margin-top: 16px;">
+                <h5 style="margin-bottom: 6px; font-weight: 600;">Potential Risks & Mitigation</h5>
+                <p style="margin: 0; font-size: 14px; color: var(--text-secondary); line-height: 1.5;">@(string.IsNullOrEmpty(Model.PotentialRisks) ? "No substantial risks identified." : Model.PotentialRisks)</p>
+            </div>
+        </div>
+
+        <!-- Comment Board -->
+        <div class="card" style="padding: 24px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background-color: var(--color-white);">
+            <h3 style="margin-top: 0; border-bottom: 2px solid var(--color-border); padding-bottom: 8px; color: var(--color-primary); font-size: 18px;">Comments & Conversation</h3>
+
+            <form asp-controller="Ideas" asp-action="AddComment" asp-route-id="@Model.Id" method="post" style="margin-top: 16px; margin-bottom: 24px;">
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <textarea name="text" required placeholder="Type a comment or ask for clarification..." style="width: 100%; min-height: 80px; padding: 12px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-size: 14px;"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="padding: 8px 16px; font-weight: 600; border-radius: var(--radius-sm); border: none; background-color: var(--color-primary); color: white; cursor: pointer;">Post Comment</button>
+            </form>
+
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                @if (Model.Comments != null && Model.Comments.Count > 0)
+                {
+                    foreach (var comment in Model.Comments)
+                    {
+                        var isTeam = comment.AuthorRole == "Innovation Manager" || comment.AuthorRole == "Innovation Officer" || comment.AuthorRole == "InnovationTeam";
+                        var borderCol = isTeam ? "var(--color-primary)" : "var(--color-border)";
+                        var bgCol = isTeam ? "var(--color-surface-muted)" : "white";
+
+                        <div style="padding: 12px; border: 1px solid @borderCol; border-radius: var(--radius-sm); background-color: @bgCol; font-size: 13px;">
+                            <div style="display: flex; justify-content: space-between; font-weight: 600; margin-bottom: 6px;">
+                                <span>@comment.Author <span style="font-size: 11px; font-weight: normal; color: var(--text-tertiary);">(@comment.AuthorRole)</span></span>
+                                <span style="font-size: 11px; color: var(--text-tertiary); font-weight: normal;">@comment.Timestamp</span>
+                            </div>
+                            <div style="color: var(--text-secondary); line-height: 1.4;">@comment.Text</div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div style="text-align: center; color: var(--text-tertiary); padding: 16px;">No comments yet. Start the conversation!</div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Column: Metadata, Submitter and Attachments -->
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+        <div class="card" style="padding: 20px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background-color: var(--color-white);">
+            <h4 style="margin-top: 0; margin-bottom: 12px; color: var(--color-primary); font-size: 16px; border-bottom: 1px solid var(--color-border); padding-bottom: 8px;">Submission Info</h4>
+
+            <div style="font-size: 13px; line-height: 1.6; display: flex; flex-direction: column; gap: 8px;">
+                <div><span style="color: var(--text-tertiary);">Submitter Name:</span> <br><strong>@Model.SubmitterName</strong></div>
+                <div><span style="color: var(--text-tertiary);">Submitter Email:</span> <br>@Model.SubmitterEmail</div>
+                <div><span style="color: var(--text-tertiary);">Department:</span> <br>@Model.Department</div>
+                <div><span style="color: var(--text-tertiary);">Category:</span> <br>@Model.Category</div>
+                <div><span style="color: var(--text-tertiary);">Date Submitted:</span> <br>@Model.DateSubmitted</div>
+                <div><span style="color: var(--text-tertiary);">Last Updated:</span> <br>@Model.LastUpdated</div>
+            </div>
+        </div>
+
+        @if (Model.SubmissionType == "individual" && Model.Individual != null)
+        {
+            <div class="card" style="padding: 20px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background-color: var(--color-white);">
+                <h4 style="margin-top: 0; margin-bottom: 12px; color: var(--color-primary); font-size: 16px; border-bottom: 1px solid var(--color-border); padding-bottom: 8px;">Individual Details</h4>
+                <div style="font-size: 13px; line-height: 1.6; display: flex; flex-direction: column; gap: 8px;">
+                    <div><span style="color: var(--text-tertiary);">Full Name:</span> <br><strong>@Model.Individual.FullName</strong></div>
+                    <div><span style="color: var(--text-tertiary);">Job Rank:</span> <br>@Model.Individual.JobRank</div>
+                    <div><span style="color: var(--text-tertiary);">Duty Station:</span> <br>@Model.Individual.DutyStation</div>
+                    <div><span style="color: var(--text-tertiary);">Business Unit:</span> <br>@Model.Individual.BusinessUnit</div>
+                </div>
+            </div>
+        }
+
+        <div class="card" style="padding: 20px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background-color: var(--color-white);">
+            <h4 style="margin-top: 0; margin-bottom: 12px; color: var(--color-primary); font-size: 16px; border-bottom: 1px solid var(--color-border); padding-bottom: 8px;">Attachments</h4>
+
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 12px;">
+                @if (Model.Attachments != null && Model.Attachments.Count > 0)
+                {
+                    foreach (var file in Model.Attachments)
+                    {
+                        <div style="display: flex; align-items: center; justify-content: space-between; border: 1px solid var(--color-border); padding: 8px; border-radius: var(--radius-sm); font-size: 12px; background-color: var(--color-surface-muted);">
+                            <span style="font-weight: 500; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 140px;">@file.Name</span>
+                            <button class="btn" onclick="alert('Downloading attachment: @file.Name')" style="padding: 2px 6px; font-size: 11px; background-color: var(--color-primary); color: white; border: none; border-radius: var(--radius-sm); cursor: pointer;">Get</button>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <span style="font-size: 13px; color: var(--text-tertiary); text-align: center;">No attachments provided.</span>
+                }
+            </div>
+        </div>
+    </div>
+</div>

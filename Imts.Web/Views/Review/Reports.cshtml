@@ -1,0 +1,120 @@
+@model List<Imts.Web.Services.IdeaResponse>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Reports & Analytics";
+}
+
+<div class="summary-cards" style="margin-bottom: 24px;">
+    <div class="summary-card">
+        <div class="card-label">Total Pipeline Proposals</div>
+        <div class="card-value">@Model.Count</div>
+        <div class="card-sub">All-time proposals</div>
+    </div>
+    <div class="summary-card">
+        <div class="card-label">Approved Proposals</div>
+        <div class="card-value">@Model.Count(i => i.Status == "Approved")</div>
+        <div class="card-sub">Ready for implementation</div>
+    </div>
+    <div class="summary-card">
+        <div class="card-label">Under Review</div>
+        <div class="card-value">@Model.Count(i => i.Status == "Under Review" || i.Status == "Submitted")</div>
+        <div class="card-sub">Awaiting evaluation</div>
+    </div>
+    <div class="summary-card">
+        <div class="card-label">SLA Breach Ratio</div>
+        @{
+            var breachCount = Model.Count(i => i.ReviewSlaStatus == "Breached");
+            var ratio = Model.Count > 0 ? (double)breachCount / Model.Count * 100 : 0;
+        }
+        <div class="card-value" style="color: var(--color-danger);">@ratio.ToString("0.0")%</div>
+        <div class="card-sub">Overdue evaluation items</div>
+    </div>
+</div>
+
+<div class="two-col-grid" style="margin-top: 24px;">
+    <!-- Reports Chart -->
+    <div class="card" style="padding: 24px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background-color: var(--color-white);">
+        <h3 style="margin-top: 0; color: var(--color-primary); margin-bottom: 16px;">Submissions by Department</h3>
+        <div style="position: relative; height: 300px; width: 100%;">
+            <canvas id="departmentsChart" style="height:100%; width:100%;"></canvas>
+        </div>
+    </div>
+
+    <!-- Reports Table / Summary -->
+    <div class="card" style="padding: 24px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background-color: var(--color-white);">
+        <h3 style="margin-top: 0; color: var(--color-primary); margin-bottom: 16px;">Proposal Summary Matrix</h3>
+
+        <div class="table-container">
+            <table class="data-table" style="font-size: 13px;">
+                <thead>
+                    <tr>
+                        <th>Department</th>
+                        <th>Total Submissions</th>
+                        <th>Approved</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var groupedDepts = Model.GroupBy(i => i.Department).Select(g => new {
+                            Dept = g.Key,
+                            Total = g.Count(),
+                            Approved = g.Count(x => x.Status == "Approved")
+                        }).OrderByDescending(x => x.Total).ToList();
+                    }
+                    @foreach (var dept in groupedDepts)
+                    {
+                        <tr>
+                            <td><strong>@dept.Dept</strong></td>
+                            <td>@dept.Total</td>
+                            <td style="color: var(--color-success); font-weight: 600;">@dept.Approved</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Extract data for chart
+        var labels = [];
+        var dataValues = [];
+
+        @foreach (var dept in groupedDepts)
+        {
+            <text>
+                labels.push("@Html.Raw(dept.Dept)");
+                dataValues.push(@dept.Total);
+            </text>
+        }
+
+        var ctx = document.getElementById('departmentsChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Proposals',
+                    data: dataValues,
+                    backgroundColor: 'rgba(90, 12, 8, 0.8)',
+                    borderColor: 'rgba(90, 12, 8, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+}

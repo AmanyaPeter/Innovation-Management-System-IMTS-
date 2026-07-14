@@ -1,0 +1,113 @@
+@model List<Imts.Web.Services.UserDto>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "User Account Management";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" style="color: var(--color-success); background-color: #EBFDF2; border: 1px solid #DCFCE7; padding: 12px; border-radius: var(--radius-sm); margin-bottom: 20px; font-size: 14px;">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<div class="card" style="padding: 24px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background-color: var(--color-white);">
+    <h3 style="margin-top: 0; color: var(--color-primary); margin-bottom: 20px;">Provisioned Accounts</h3>
+
+    <!-- Filter and Search controls -->
+    <div style="display: flex; gap: 16px; margin-bottom: 20px; align-items: center; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 250px; position: relative;">
+            <input type="text" id="adminUserSearch" placeholder="Search users by name, email or department..." style="width: 100%; padding: 10px 10px 10px 36px; border: 1px solid var(--color-border); border-radius: var(--radius-sm);">
+            <i data-lucide="search" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--text-tertiary);"></i>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table class="data-table" id="adminUsersTable">
+            <thead>
+                <tr>
+                    <th>Avatar</th>
+                    <th>User Detail</th>
+                    <th>Department</th>
+                    <th>Online Status</th>
+                    <th>Account Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count > 0)
+                {
+                    foreach (var user in Model)
+                    {
+                        var statusColor = user.AccountStatus == "Active" ? "var(--color-success)" : "var(--color-danger)";
+                        var onlineColor = user.OnlineStatus == "Online" ? "var(--color-success)" : "var(--text-tertiary)";
+
+                        <tr data-text="@user.Name.ToLower() @user.Email.ToLower() @user.Department.ToLower()">
+                            <td>
+                                <div style="width: 36px; height: 32px; border-radius: 50%; background-color: var(--color-surface-muted); color: var(--color-primary); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 13px; border: 1px solid var(--color-border);">@user.Avatar</div>
+                            </td>
+                            <td>
+                                <strong>@user.Name</strong>
+                                <div style="font-size: 12px; color: var(--text-tertiary); margin-top: 2px;">@user.Email</div>
+                                <div style="font-size: 11px; color: var(--text-tertiary);">Role: @user.Role</div>
+                            </td>
+                            <td>@user.Department</td>
+                            <td>
+                                <span style="display: inline-flex; align-items: center; gap: 4px; font-weight: 500; color: @onlineColor;">
+                                    <span style="width: 6px; height: 6px; border-radius: 50%; background-color: @onlineColor;"></span> @user.OnlineStatus
+                                </span>
+                                <div style="font-size: 10px; color: var(--text-tertiary); margin-top: 2px;">Last Login: @user.LastLogin</div>
+                            </td>
+                            <td><strong style="color: @statusColor;">@user.AccountStatus</strong></td>
+                            <td>
+                                <div style="display: flex; gap: 8px;">
+                                    <!-- Lock/Unlock toggle -->
+                                    <form asp-controller="Admin" asp-action="ToggleLock" asp-route-userId="@user.Id" method="post" style="display:inline;">
+                                        <button type="submit" class="btn" style="padding: 6px 12px; font-size: 12px; font-weight: 600; cursor: pointer; border-radius: var(--radius-sm); background-color: @(user.AccountStatus == "Active" ? "#FDF2F2" : "#EBFDF2"); border: 1px solid @(user.AccountStatus == "Active" ? "#FDE8E8" : "#DCFCE7"); color: @(user.AccountStatus == "Active" ? "var(--color-danger)" : "var(--color-success)");">
+                                            @(user.AccountStatus == "Active" ? "Lock" : "Unlock")
+                                        </button>
+                                    </form>
+
+                                    <!-- Reset password administrative action -->
+                                    <form asp-controller="Admin" asp-action="ResetPassword" asp-route-userId="@user.Id" method="post" onsubmit="return confirm('Trigger password reset for @user.Name?');" style="display:inline;">
+                                        <button type="submit" class="btn" style="padding: 6px 12px; font-size: 12px; font-weight: 600; cursor: pointer; border-radius: var(--radius-sm); background-color: var(--color-surface-muted); border: 1px solid var(--color-border);">
+                                            Reset PW
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" style="text-align: center; color: var(--text-tertiary); padding: 24px;">No users found.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const adminUserSearch = document.getElementById('adminUserSearch');
+        const rows = document.querySelectorAll('#adminUsersTable tbody tr');
+
+        if (adminUserSearch) {
+            adminUserSearch.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                rows.forEach(row => {
+                    if (row.cells.length < 5) return;
+                    const text = row.getAttribute('data-text') || '';
+                    if (text.includes(query)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        }
+    </script>
+}

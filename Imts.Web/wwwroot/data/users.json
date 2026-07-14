@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "Jane Mukasa",
+    "email": "jane.mukasa@bou.or.ug",
+    "department": "Innovation Team",
+    "role": "Innovation Manager",
+    "accountStatus": "Active",
+    "onlineStatus": "Online",
+    "lastLogin": "2025-07-14T09:30:00Z",
+    "permissions": ["Review", "Approve", "Manage Categories"],
+    "avatar": "JM"
+  },
+  {
+    "id": 2,
+    "name": "Peter Kaggwa",
+    "email": "peter.kaggwa@bou.or.ug",
+    "department": "Innovation Team",
+    "role": "Innovation Officer",
+    "accountStatus": "Active",
+    "onlineStatus": "Online",
+    "lastLogin": "2025-07-14T08:45:00Z",
+    "permissions": ["Review", "Comment"],
+    "avatar": "PK"
+  },
+  {
+    "id": 3,
+    "name": "Brian Ssempijja",
+    "email": "brian@bou.or.ug",
+    "department": "Information Technology",
+    "role": "Staff",
+    "accountStatus": "Active",
+    "onlineStatus": "Offline",
+    "lastLogin": "2025-07-13T16:15:00Z",
+    "permissions": ["Submit Ideas", "View Resources"],
+    "avatar": "B"
+  },
+  {
+    "id": 4,
+    "name": "Sarah Kemigisha",
+    "email": "sarah@bou.or.ug",
+    "department": "Finance",
+    "role": "Staff",
+    "accountStatus": "Active",
+    "onlineStatus": "Offline",
+    "lastLogin": "2025-07-13T14:30:00Z",
+    "permissions": ["Submit Ideas", "View Resources"],
+    "avatar": "SK"
+  },
+  {
+    "id": 5,
+    "name": "John Wasswa",
+    "email": "john@bou.or.ug",
+    "department": "Operations",
+    "role": "Staff",
+    "accountStatus": "Active",
+    "onlineStatus": "Offline",
+    "lastLogin": "2025-07-12T11:00:00Z",
+    "permissions": ["Submit Ideas", "View Resources"],
+    "avatar": "JW"
+  },
+  {
+    "id": 6,
+    "name": "Grace Nabatanzi",
+    "email": "grace@bou.or.ug",
+    "department": "Information Technology",
+    "role": "Staff",
+    "accountStatus": "Active",
+    "onlineStatus": "Online",
+    "lastLogin": "2025-07-14T10:00:00Z",
+    "permissions": ["Submit Ideas", "View Resources"],
+    "avatar": "GN"
+  },
+  {
+    "id": 7,
+    "name": "Admin User",
+    "email": "admin@bou.or.ug",
+    "department": "IT Administration",
+    "role": "IT Admin",
+    "accountStatus": "Active",
+    "onlineStatus": "Online",
+    "lastLogin": "2025-07-14T09:00:00Z",
+    "permissions": ["Full System Access"],
+    "avatar": "A"
+  },
+  {
+    "id": 8,
+    "name": "Alice Mutoni",
+    "email": "alice.mutoni@bou.or.ug",
+    "department": "Human Resources",
+    "role": "Staff",
+    "accountStatus": "Active",
+    "onlineStatus": "Offline",
+    "lastLogin": "2025-07-11T13:00:00Z",
+    "permissions": ["Submit Ideas", "View Resources"],
+    "avatar": "AM"
+  },
+  {
+    "id": 9,
+    "name": "Robert Ssebunya",
+    "email": "robert.ssebunya@bou.or.ug",
+    "department": "Risk Management",
+    "role": "Staff",
+    "accountStatus": "Locked",
+    "onlineStatus": "Offline",
+    "lastLogin": "2025-07-10T08:00:00Z",
+    "permissions": ["Submit Ideas", "View Resources"],
+    "avatar": "RS"
+  },
+  {
+    "id": 10,
+    "name": "Diana Nakato",
+    "email": "diana.nakato@bou.or.ug",
+    "department": "Finance",
+    "role": "Staff",
+    "accountStatus": "Active",
+    "onlineStatus": "Online",
+    "lastLogin": "2025-07-14T07:30:00Z",
+    "permissions": ["Submit Ideas", "View Resources"],
+    "avatar": "DN"
+  }
+]

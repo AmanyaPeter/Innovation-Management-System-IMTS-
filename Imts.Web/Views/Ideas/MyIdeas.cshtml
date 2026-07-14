@@ -1,0 +1,126 @@
+@model List<Imts.Web.Services.IdeaResponse>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "My Ideas";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" style="color: var(--color-success); background-color: #EBFDF2; border: 1px solid #DCFCE7; padding: 12px; border-radius: var(--radius-sm); margin-bottom: 20px; font-size: 14px;">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<div class="card" style="padding: 24px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background-color: var(--color-white);">
+    <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h3 style="margin: 0; color: var(--color-primary);">My Submissions</h3>
+        <button class="btn btn-primary" onclick="location.href='/Ideas/Submit'" style="padding: 10px 16px; font-weight: 600; border-radius: var(--radius-sm); border: none; background-color: var(--color-primary); color: white; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+            <i data-lucide="plus" style="width: 16px; height: 16px;"></i> Submit New Idea
+        </button>
+    </div>
+
+    <!-- Filter and Search controls -->
+    <div style="display: flex; gap: 16px; margin-bottom: 20px; align-items: center; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 250px; position: relative;">
+            <input type="text" id="searchInput" placeholder="Search my ideas..." style="width: 100%; padding: 10px 10px 10px 36px; border: 1px solid var(--color-border); border-radius: var(--radius-sm);">
+            <i data-lucide="search" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--text-tertiary);"></i>
+        </div>
+        <div style="width: 200px;">
+            <select id="statusFilter" style="width: 100%; padding: 10px; border: 1px solid var(--color-border); border-radius: var(--radius-sm);">
+                <option value="">All Statuses</option>
+                <option value="submitted">Submitted</option>
+                <option value="under review">Under Review</option>
+                <option value="approved">Approved</option>
+                <option value="declined">Declined</option>
+                <option value="retracted">Retracted</option>
+                <option value="cancelled">Cancelled</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table class="data-table" id="myIdeasTable">
+            <thead>
+                <tr>
+                    <th style="cursor: pointer;">Title <i data-lucide="chevron-down" style="width:14px;height:14px;vertical-align:middle;"></i></th>
+                    <th style="cursor: pointer;">Category <i data-lucide="chevron-down" style="width:14px;height:14px;vertical-align:middle;"></i></th>
+                    <th style="cursor: pointer;">Stage <i data-lucide="chevron-down" style="width:14px;height:14px;vertical-align:middle;"></i></th>
+                    <th style="cursor: pointer;">Status <i data-lucide="chevron-down" style="width:14px;height:14px;vertical-align:middle;"></i></th>
+                    <th style="cursor: pointer;">Submitted Date <i data-lucide="chevron-down" style="width:14px;height:14px;vertical-align:middle;"></i></th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count > 0)
+                {
+                    foreach (var idea in Model)
+                    {
+                        <tr data-status="@idea.Status.ToLower()" data-title="@idea.Title.ToLower() @idea.Category.ToLower()">
+                            <td><a href="/Ideas/Details/@idea.Id" style="color: var(--color-primary); text-decoration: none; font-weight: 600;">@idea.Title</a></td>
+                            <td>@idea.Category</td>
+                            <td><span style="font-size: 13px; color: var(--text-secondary); font-weight: 500;">@idea.Stage</span></td>
+                            <td>@await Component.InvokeAsync("StatusBadge", new { status = idea.Status })</td>
+                            <td>@idea.DateSubmitted</td>
+                            <td>
+                                <div style="display: flex; gap: 8px;">
+                                    @if (idea.Status == "Submitted")
+                                    {
+                                        <form asp-controller="Ideas" asp-action="Retract" asp-route-id="@idea.Id" method="post" onsubmit="return confirm('Are you sure you want to retract this idea?');" style="display:inline;">
+                                            <button type="submit" class="btn" style="padding: 4px 8px; font-size: 12px; background-color: var(--color-surface-muted); border: 1px solid var(--color-border); color: var(--color-primary); cursor: pointer; border-radius: var(--radius-sm);">Retract</button>
+                                        </form>
+                                    }
+                                    @if (idea.Status == "Submitted" || idea.Status == "Under Review" || idea.Status == "Draft")
+                                    {
+                                        <form asp-controller="Ideas" asp-action="Cancel" asp-route-id="@idea.Id" method="post" onsubmit="return confirm('Are you sure you want to cancel this idea permanently?');" style="display:inline;">
+                                            <button type="submit" class="btn" style="padding: 4px 8px; font-size: 12px; background-color: #FDF2F2; border: 1px solid #FDE8E8; color: var(--color-danger); cursor: pointer; border-radius: var(--radius-sm);">Cancel</button>
+                                        </form>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" style="text-align: center; color: var(--text-tertiary); padding: 32px;">You haven't submitted any ideas yet. Click "Submit New Idea" to start.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Simple instant search and filter logic
+        const searchInput = document.getElementById('searchInput');
+        const statusFilter = document.getElementById('statusFilter');
+        const rows = document.querySelectorAll('#myIdeasTable tbody tr');
+
+        function filterTable() {
+            const query = searchInput.value.toLowerCase().trim();
+            const status = statusFilter.value.toLowerCase();
+
+            rows.forEach(row => {
+                if (row.cells.length < 5) return; // Skip empty row
+                const text = row.getAttribute('data-title') || '';
+                const rowStatus = row.getAttribute('data-status') || '';
+
+                const matchesSearch = text.includes(query);
+                const matchesStatus = status === '' || rowStatus === status;
+
+                if (matchesSearch && matchesStatus) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        if (searchInput && statusFilter) {
+            searchInput.addEventListener('input', filterTable);
+            statusFilter.addEventListener('change', filterTable);
+        }
+    </script>
+}

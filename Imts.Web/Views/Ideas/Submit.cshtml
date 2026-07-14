@@ -1,0 +1,297 @@
+@model dynamic
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Submit New Idea";
+}
+
+<div class="card" style="padding: 28px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background-color: var(--color-white); max-width: 800px; margin: 0 auto;">
+    <h3 style="margin-top: 0; color: var(--color-primary); margin-bottom: 24px; border-bottom: 2px solid var(--color-border); padding-bottom: 8px;">Innovation Submission Wizard</h3>
+
+    <!-- Stepper Header -->
+    <div style="display: flex; justify-content: space-between; margin-bottom: 30px; font-size: 13px; font-weight: 600; color: var(--text-tertiary);">
+        <div id="stepHeader1" style="color: var(--color-primary); display: flex; align-items: center; gap: 6px;"><span style="width:24px;height:24px;border-radius:50%;background-color:var(--color-primary);color:white;display:inline-flex;align-items:center;justify-content:center;">1</span> Submitter</div>
+        <div id="stepHeader2" style="display: flex; align-items: center; gap: 6px;"><span style="width:24px;height:24px;border-radius:50%;background-color:var(--color-border);color:var(--text-tertiary);display:inline-flex;align-items:center;justify-content:center;">2</span> Concept</div>
+        <div id="stepHeader3" style="display: flex; align-items: center; gap: 6px;"><span style="width:24px;height:24px;border-radius:50%;background-color:var(--color-border);color:var(--text-tertiary);display:inline-flex;align-items:center;justify-content:center;">3</span> Alignment</div>
+        <div id="stepHeader4" style="display: flex; align-items: center; gap: 6px;"><span style="width:24px;height:24px;border-radius:50%;background-color:var(--color-border);color:var(--text-tertiary);display:inline-flex;align-items:center;justify-content:center;">4</span> Planning</div>
+    </div>
+
+    <form asp-controller="Ideas" asp-action="Submit" method="post" id="submitWizardForm">
+        <!-- STEP 1: Submitter Info -->
+        <div class="wizard-step" id="step1">
+            <h4 style="margin-top: 0; margin-bottom: 16px; color: var(--color-primary);">Step 1: Submitter Information</h4>
+
+            <div class="form-group" style="margin-bottom: 16px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 500;">Submission Type</label>
+                <div style="display: flex; gap: 16px;">
+                    <label style="display: inline-flex; align-items: center; gap: 6px; cursor: pointer;">
+                        <input type="radio" name="submissionType" value="individual" checked id="typeIndividual"> Individual Submission
+                    </label>
+                    <label style="display: inline-flex; align-items: center; gap: 6px; cursor: pointer;">
+                        <input type="radio" name="submissionType" value="team" id="typeTeam"> Joint / Team Submission
+                    </label>
+                </div>
+            </div>
+
+            <!-- Individual Fields -->
+            <div id="individualSection" style="display: block;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" class="form-control" placeholder="Jane Doe" style="width:100%; padding:10px; border:1px solid var(--color-border); border-radius:var(--radius-sm);">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Work Email</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="jane@bou.or.ug" style="width:100%; padding:10px; border:1px solid var(--color-border); border-radius:var(--radius-sm);">
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                    <div class="form-group">
+                        <label for="businessUnit">Business Unit / Department</label>
+                        <input type="text" id="businessUnit" name="businessUnit" class="form-control" placeholder="IT Administration" style="width:100%; padding:10px; border:1px solid var(--color-border); border-radius:var(--radius-sm);">
+                    </div>
+                    <div class="form-group">
+                        <label for="dutyStation">Duty Station</label>
+                        <input type="text" id="dutyStation" name="dutyStation" class="form-control" placeholder="Kampala Headquarters" style="width:100%; padding:10px; border:1px solid var(--color-border); border-radius:var(--radius-sm);">
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                    <div class="form-group">
+                        <label for="age">Age Range</label>
+                        <select id="age" name="age" class="form-control" style="width:100%; padding:10px; border:1px solid var(--color-border); border-radius:var(--radius-sm);">
+                            <option value="20-30">20-30</option>
+                            <option value="31-40">31-40</option>
+                            <option value="41-50">31-40</option>
+                            <option value="50+">50+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" name="gender" class="form-control" style="width:100%; padding:10px; border:1px solid var(--color-border); border-radius:var(--radius-sm);">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="jobRank">Job Rank / Scale</label>
+                        <input type="text" id="jobRank" name="jobRank" class="form-control" placeholder="Scale 5" style="width:100%; padding:10px; border:1px solid var(--color-border); border-radius:var(--radius-sm);">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Fields -->
+            <div id="teamSection" style="display: none; margin-bottom: 16px;">
+                <div class="form-group">
+                    <label for="teamComposition">Team Composition Description</label>
+                    <textarea id="teamComposition" name="teamComposition" class="form-control" placeholder="Describe the co-submitters, names, departments, and job titles..." style="width:100%; min-height:80px; padding:10px; border:1px solid var(--color-border); border-radius:var(--radius-sm);"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 2: Core Concept -->
+        <div class="wizard-step" id="step2" style="display: none;">
+            <h4 style="margin-top: 0; margin-bottom: 16px; color: var(--color-primary);">Step 2: Core Concept</h4>
+
+            <div class="form-group" style="margin-bottom: 16px;">
+                <label for="title">Idea Title</label>
+                <input type="text" id="title" name="title" required placeholder="A brief, punchy title" style="width:100%; padding:10px; border:1px solid var(--color-border); border-radius:var(--radius-sm);">
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                <div class="form-group">
+                    <label for="category">Innovation Category</label>
+                    <select id="category" name="category" required style="width:100%; padding:10px; border:1px solid var(--color-border); border-radius:var(--radius-sm);">
+                        @if (ViewBag.Categories != null)
+                        {
+                            foreach (var cat in ViewBag.Categories)
+                            {
+                                <option value="@cat.Name">@cat.Name</option>
+                            }
+                        }
+                        else
+                        {
+                            <option value="FinTech">FinTech</option>
+                            <option value="Process">Process</option>
+                            <option value="Policy">Policy</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="department">Target Department</label>
+                    <input type="text" id="department" name="department" required placeholder="e.g., Information Technology" style="width:100%; padding:10px; border:1px solid var(--color-border); border-radius:var(--radius-sm);">
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 16px;">
+                <label for="executiveSummary">Executive Summary</label>
+                <textarea id="executiveSummary" name="executiveSummary" required placeholder="Summarize your innovation proposal in 2-3 sentences" style="width:100%; min-height:80px; padding:10px; border:1px solid var(--color-border); border-radius:var(--radius-sm);"></textarea>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 16px;">
+                <label for="problemOrOpportunity">Problem Statement / Opportunity</label>
+                <textarea id="problemOrOpportunity" name="problemOrOpportunity" required placeholder="What operational bottleneck or strategic gap does this idea target?" style="width:100%; min-height:100px; padding:10px; border:1px solid var(--color-border); border-radius:var(--radius-sm);"></textarea>
+            </div>
+        </div>
+
+        <!-- STEP 3: Detailed Solution -->
+        <div class="wizard-step" id="step3" style="display: none;">
+            <h4 style="margin-top: 0; margin-bottom: 16px; color: var(--color-primary);">Step 3: Solution & Alignment</h4>
+
+            <div class="form-group" style="margin-bottom: 16px;">
+                <label for="proposedSolution">Proposed Solution Detail</label>
+                <textarea id="proposedSolution" name="proposedSolution" required placeholder="Provide a detailed operational description of how your solution works..." style="width:100%; min-height:120px; padding:10px; border:1px solid var(--color-border); border-radius:var(--radius-sm);"></textarea>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 16px;">
+                <label for="strategicObjective">Strategic Objective Alignment</label>
+                <input type="text" id="strategicObjective" name="strategicObjective" required placeholder="e.g., Enhance Financial Inclusion / Operational Efficiency" style="width:100%; padding:10px; border:1px solid var(--color-border); border-radius:var(--radius-sm);">
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                <div class="form-group">
+                    <label for="innovationCategory">Innovation Stream</label>
+                    <select id="innovationCategory" name="innovationCategory" style="width:100%; padding:10px; border:1px solid var(--color-border); border-radius:var(--radius-sm);">
+                        <option value="Incremental">Incremental Improvement</option>
+                        <option value="Radical">Radical Innovation</option>
+                        <option value="Disruptive">Disruptive Change</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sdgContribution">SDG Contribution Alignment</label>
+                    <input type="text" id="sdgContribution" name="sdgContribution" placeholder="e.g., Goal 8: Decent Work & Economic Growth" style="width:100%; padding:10px; border:1px solid var(--color-border); border-radius:var(--radius-sm);">
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 4: Execution & Planning -->
+        <div class="wizard-step" id="step4" style="display: none;">
+            <h4 style="margin-top: 0; margin-bottom: 16px; color: var(--color-primary);">Step 4: Execution & Planning</h4>
+
+            <div class="form-group" style="margin-bottom: 16px;">
+                <label for="expectedBenefits">Expected Benefits</label>
+                <textarea id="expectedBenefits" name="expectedBenefits" required placeholder="Quantitative or qualitative benefits for BOU..." style="width:100%; min-height:80px; padding:10px; border:1px solid var(--color-border); border-radius:var(--radius-sm);"></textarea>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 16px;">
+                <label for="keyEnablers">Key Enablers & Resource Needs</label>
+                <textarea id="keyEnablers" name="keyEnablers" required placeholder="What resources, software, licenses, or team capability are required?" style="width:100%; min-height:80px; padding:10px; border:1px solid var(--color-border); border-radius:var(--radius-sm);"></textarea>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 16px;">
+                <label for="implementationApproach">Implementation Approach & Timelines</label>
+                <textarea id="implementationApproach" name="implementationApproach" required placeholder="How should we execute? Define immediate next steps..." style="width:100%; min-height:80px; padding:10px; border:1px solid var(--color-border); border-radius:var(--radius-sm);"></textarea>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 16px;">
+                <label for="expectedImpactIndicators">Expected Impact Indicators</label>
+                <input type="text" id="expectedImpactIndicators" name="expectedImpactIndicators" required placeholder="Key metrics to trace performance" style="width:100%; padding:10px; border:1px solid var(--color-border); border-radius:var(--radius-sm);">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 16px;">
+                <label for="potentialRisks">Potential Risks & Mitigations</label>
+                <input type="text" id="potentialRisks" name="potentialRisks" placeholder="What could go wrong? Define mitigation steps..." style="width:100%; padding:10px; border:1px solid var(--color-border); border-radius:var(--radius-sm);">
+            </div>
+        </div>
+
+        <!-- Wizard Nav buttons -->
+        <div style="display: flex; justify-content: space-between; border-top: 1px solid var(--color-border); padding-top: 20px; margin-top: 24px;">
+            <button type="button" class="btn" id="prevBtn" onclick="navigateStep(-1)" style="padding: 10px 20px; font-weight: 600; border-radius: var(--radius-sm); border: 1px solid var(--color-border); background-color: var(--color-surface-muted); color: var(--text-primary); cursor: pointer; visibility: hidden;">Previous</button>
+            <button type="button" class="btn btn-primary" id="nextBtn" onclick="navigateStep(1)" style="padding: 10px 20px; font-weight: 600; border-radius: var(--radius-sm); border: none; background-color: var(--color-primary); color: white; cursor: pointer;">Next</button>
+            <button type="submit" class="btn btn-success" id="submitBtn" style="padding: 10px 20px; font-weight: 600; border-radius: var(--radius-sm); border: none; background-color: var(--color-success); color: white; cursor: pointer; display: none;">Submit Idea</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        // Submitter toggle logic
+        const typeIndividual = document.getElementById('typeIndividual');
+        const typeTeam = document.getElementById('typeTeam');
+        const individualSection = document.getElementById('individualSection');
+        const teamSection = document.getElementById('teamSection');
+
+        if (typeIndividual && typeTeam) {
+            typeIndividual.addEventListener('change', () => {
+                individualSection.style.display = 'block';
+                teamSection.style.display = 'none';
+            });
+            typeTeam.addEventListener('change', () => {
+                individualSection.style.display = 'none';
+                teamSection.style.display = 'block';
+            });
+        }
+
+        // 4-step wizard stepper logic
+        let currentStep = 1;
+        const totalSteps = 4;
+
+        function navigateStep(direction) {
+            // Validate step before moving forward
+            if (direction === 1 && !validateCurrentStep()) {
+                alert('Please fill in all required fields marked before moving forward.');
+                return;
+            }
+
+            currentStep += direction;
+            if (currentStep < 1) currentStep = 1;
+            if (currentStep > totalSteps) currentStep = totalSteps;
+
+            // Toggle step visibility
+            for (let i = 1; i <= totalSteps; i++) {
+                const stepEl = document.getElementById('step' + i);
+                const headerEl = document.getElementById('stepHeader' + i);
+                if (stepEl) {
+                    stepEl.style.display = (i === currentStep) ? 'block' : 'none';
+                }
+                if (headerEl) {
+                    const span = headerEl.querySelector('span');
+                    if (i < currentStep) {
+                        span.style.backgroundColor = 'var(--color-success)';
+                        span.style.color = 'white';
+                        headerEl.style.color = 'var(--color-success)';
+                    } else if (i === currentStep) {
+                        span.style.backgroundColor = 'var(--color-primary)';
+                        span.style.color = 'white';
+                        headerEl.style.color = 'var(--color-primary)';
+                    } else {
+                        span.style.backgroundColor = 'var(--color-border)';
+                        span.style.color = 'var(--text-tertiary)';
+                        headerEl.style.color = 'var(--text-tertiary)';
+                    }
+                }
+            }
+
+            // Button visibility
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const submitBtn = document.getElementById('submitBtn');
+
+            if (prevBtn) {
+                prevBtn.style.visibility = (currentStep === 1) ? 'hidden' : 'visible';
+            }
+
+            if (currentStep === totalSteps) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'inline-block';
+            } else {
+                nextBtn.style.display = 'inline-block';
+                submitBtn.style.display = 'none';
+            }
+        }
+
+        function validateCurrentStep() {
+            const currentStepEl = document.getElementById('step' + currentStep);
+            if (!currentStepEl) return true;
+            const requiredFields = currentStepEl.querySelectorAll('[required]');
+            let isValid = true;
+            requiredFields.forEach(field => {
+                if (!field.value || !field.value.trim()) {
+                    isValid = false;
+                    field.style.borderColor = 'var(--color-danger)';
+                } else {
+                    field.style.borderColor = 'var(--color-border)';
+                }
+            });
+            return isValid;
+        }
+    </script>
+}

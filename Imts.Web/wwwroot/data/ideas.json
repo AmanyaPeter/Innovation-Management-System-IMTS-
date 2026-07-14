@@ -1,0 +1,472 @@
+[
+  {
+    "id": 1,
+    "title": "Digital Currency Wallet",
+    "category": "FinTech",
+    "department": "Information Technology",
+    "stage": "Concept Development",
+    "status": "Under Review",
+    "dateSubmitted": "2025-07-10T00:00:00Z",
+    "lastUpdated": "2025-07-14T00:00:00Z",
+    "submitterName": "Brian Ssempijja",
+    "submitterEmail": "brian@bou.or.ug",
+    "submissionType": "individual",
+    "individual": {
+      "fullName": "Brian Ssempijja",
+      "email": "brian@bou.or.ug",
+      "businessUnit": "Information Technology",
+      "dutyStation": "Headquarters",
+      "age": "25-34",
+      "gender": "Male",
+      "jobRank": "Middle Management"
+    },
+    "teamComposition": {},
+    "executiveSummary": "A digital currency wallet solution designed to facilitate secure and efficient cross-border transactions while reducing dependency on physical cash handling across Bank of Uganda operations.",
+    "problemOrOpportunity": "Current cross-border payment systems are slow, expensive, and reliant on correspondent banking networks. There is an opportunity to leverage digital currency technology to reduce settlement times from days to near-instantaneous.",
+    "proposedSolution": "Develop a multi-currency digital wallet platform that integrates with the national payment system, enabling real-time gross settlement for both wholesale and retail transactions.",
+    "attachments": [
+      { "name": "proposal_v2.pdf", "type": "application/pdf", "size": 2048000 },
+      { "name": "budget_estimate.xlsx", "type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "size": 1024000 },
+      { "name": "ui_mockup.png", "type": "image/png", "size": 512000 }
+    ],
+    "strategicObjective": "Enhance Stakeholder Confidence",
+    "innovationCategory": "Technology/System",
+    "sdgContribution": "SDG 9 - Industry, Innovation and Infrastructure",
+    "expectedBenefits": "Faster cross-border transactions, reduced operational costs, improved financial inclusion, enhanced transparency in payment flows.",
+    "keyEnablers": "ICT infrastructure upgrade, strategic partnerships with fintech providers, staff training on digital currency operations, regulatory framework alignment.",
+    "implementationApproach": "Phased rollout starting with proof of concept involving a small user group, followed by pilot, then full-scale deployment across all BoU branches.",
+    "expectedImpactIndicators": "Reduction in cross-border settlement time from 3 days to under 1 hour, 30% reduction in transaction costs, 50% increase in digital transaction volume.",
+    "reviewer": "Jane Mukasa",
+    "reviewDeadline": "2025-09-30",
+    "reviewSlaStatus": "At Risk",
+    "approvalWorkflow": [
+      { "step": "Initial Review", "status": "Complete" },
+      { "step": "Manager Approval", "status": "Pending" },
+      { "step": "DDIPS Review", "status": "Not Started" },
+      { "step": "Final Approval", "status": "Not Started" }
+    ],
+    "comments": [
+      { "author": "Jane Mukasa", "authorRole": "Innovation Team", "timestamp": "2025-07-12T10:00:00Z", "text": "Great proposal. Please provide more details on the security architecture and how the wallet will comply with existing regulatory requirements." },
+      { "author": "Brian Ssempijja", "authorRole": "Staff", "timestamp": "2025-07-13T08:00:00Z", "text": "Thank you for the feedback. I have attached an updated document with the security framework and compliance checklist." },
+      { "author": "Jane Mukasa", "authorRole": "Innovation Team", "timestamp": "2025-07-14T09:00:00Z", "text": "The updated document addresses our concerns. Moving this to Concept Development stage." }
+    ],
+    "timeline": [
+      { "stage": "Submitted", "date": "2025-07-10" },
+      { "stage": "Concept Development", "date": "2025-07-14" }
+    ],
+    "progressStages": [
+      { "name": "Submitted", "completed": true },
+      { "name": "Concept Development", "completed": false, "active": true },
+      { "name": "Experimentation", "completed": false },
+      { "name": "Deployment", "completed": false },
+      { "name": "Closed", "completed": false }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Automated Loan Disbursement System",
+    "category": "Process Improvement",
+    "department": "Finance",
+    "stage": "Deployment",
+    "status": "Approved",
+    "dateSubmitted": "2025-06-28T00:00:00Z",
+    "lastUpdated": "2025-07-10T00:00:00Z",
+    "submitterName": "Sarah Kemigisha",
+    "submitterEmail": "sarah@bou.or.ug",
+    "submissionType": "team",
+    "individual": {},
+    "teamComposition": {
+      "teamMembersByRank": { "Senior Management": 1, "Middle Management": 2, "Operational Management": 3 },
+      "teamMembersByAge": { "25-34": 2, "35-44": 3, "45-54": 1 },
+      "teamMembersByGender": { "Male": 3, "Female": 3 },
+      "teamMembersByStation": { "Headquarters": 4, "Jinja": 1, "Mbarara": 1 }
+    },
+    "executiveSummary": "An automated loan disbursement system that eliminates manual processing bottlenecks, reduces turnaround times, and ensures consistent application of lending policies across all Bank of Uganda lending operations.",
+    "problemOrOpportunity": "Manual loan disbursement is prone to errors, delays, and inconsistent policy application. Average processing time is 5-7 days, causing frustration among borrowers and inefficiency in fund allocation.",
+    "proposedSolution": "A workflow automation platform that digitises the entire loan disbursement process from application through approval to funds release, with built-in business rules and audit trails.",
+    "attachments": [
+      { "name": "process_flow.pdf", "type": "application/pdf", "size": 1536000 },
+      { "name": "cost_analysis.xlsx", "type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "size": 768000 }
+    ],
+    "strategicObjective": "Improve Efficiency and Reliability of Bank Processes",
+    "innovationCategory": "Process",
+    "sdgContribution": "SDG 8 - Decent Work and Economic Growth",
+    "expectedBenefits": "Reduced loan processing time from 5 days to 24 hours, elimination of manual data entry errors, standardised policy enforcement, full audit trail for every transaction.",
+    "keyEnablers": "Integration with core banking system, workflow engine configuration, staff training on automated processes, change management across lending departments.",
+    "implementationApproach": "Pilot in one branch followed by phased rollout across all branches with parallel run during transition.",
+    "expectedImpactIndicators": "80% reduction in processing time, zero data entry errors, 100% policy compliance rate, 40% increase in loan processing capacity.",
+    "reviewer": "Peter Kaggwa",
+    "reviewDeadline": "2025-08-15",
+    "reviewSlaStatus": "On Track",
+    "approvalWorkflow": [
+      { "step": "Initial Review", "status": "Complete" },
+      { "step": "Manager Approval", "status": "Complete" },
+      { "step": "DDIPS Review", "status": "Complete" },
+      { "step": "Final Approval", "status": "Complete" }
+    ],
+    "comments": [
+      { "author": "Peter Kaggwa", "authorRole": "Innovation Team", "timestamp": "2025-07-05T14:00:00Z", "text": "The cost-benefit analysis is compelling. Proceed with the pilot." }
+    ],
+    "timeline": [
+      { "stage": "Submitted", "date": "2025-06-28" },
+      { "stage": "Concept Development", "date": "2025-07-02" },
+      { "stage": "Experimentation", "date": "2025-07-08" },
+      { "stage": "Deployment", "date": "2025-07-10" }
+    ],
+    "progressStages": [
+      { "name": "Submitted", "completed": true },
+      { "name": "Concept Development", "completed": true },
+      { "name": "Experimentation", "completed": true },
+      { "name": "Deployment", "completed": false, "active": true },
+      { "name": "Closed", "completed": false }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Fraud Detection AI",
+    "category": "Technology",
+    "department": "Risk Management",
+    "stage": "Experimentation",
+    "status": "Under Review",
+    "dateSubmitted": "2025-06-15T00:00:00Z",
+    "lastUpdated": "2025-07-08T00:00:00Z",
+    "submitterName": "Peter Kaggwa",
+    "submitterEmail": "peter.kaggwa@bou.or.ug",
+    "submissionType": "individual",
+    "individual": {
+      "fullName": "Peter Kaggwa",
+      "email": "peter.kaggwa@bou.or.ug",
+      "businessUnit": "Risk Management",
+      "dutyStation": "Headquarters",
+      "age": "35-44",
+      "gender": "Male",
+      "jobRank": "Senior Management"
+    },
+    "teamComposition": {},
+    "executiveSummary": "An artificial intelligence system that detects and prevents fraudulent transactions in real time by analysing patterns across the national payment system.",
+    "problemOrOpportunity": "Fraudulent transactions are increasing in volume and sophistication. Current rule-based detection systems have a high false positive rate and miss emerging fraud patterns.",
+    "proposedSolution": "A machine learning-based fraud detection engine that learns from historical transaction data, adapts to new fraud patterns, and provides real-time alerts with minimal false positives.",
+    "attachments": [
+      { "name": "technical_spec.pdf", "type": "application/pdf", "size": 3072000 },
+      { "name": "dataset_sample.csv", "type": "text/csv", "size": 5120000 }
+    ],
+    "strategicObjective": "Safeguard Financial Stability",
+    "innovationCategory": "Technology/System",
+    "sdgContribution": "SDG 16 - Peace, Justice and Strong Institutions",
+    "expectedBenefits": "Real-time fraud detection, reduced false positive rate from 15% to under 2%, adaptive learning for new fraud patterns, comprehensive audit trail.",
+    "keyEnablers": "Access to historical transaction data, GPU computing infrastructure, data science team capacity, integration with national payment switch.",
+    "implementationApproach": "Proof of concept using historical data, followed by live pilot with parallel monitoring, then full integration with payment systems.",
+    "expectedImpactIndicators": "90% fraud detection rate, under 2% false positive rate, real-time alerting within 500ms, 60% reduction in fraud losses.",
+    "reviewer": "Jane Mukasa",
+    "reviewDeadline": "2025-09-01",
+    "reviewSlaStatus": "On Track",
+    "approvalWorkflow": [
+      { "step": "Initial Review", "status": "Complete" },
+      { "step": "Manager Approval", "status": "Complete" },
+      { "step": "DDIPS Review", "status": "Pending" },
+      { "step": "Final Approval", "status": "Not Started" }
+    ],
+    "comments": [
+      { "author": "Jane Mukasa", "authorRole": "Innovation Team", "timestamp": "2025-06-25T11:00:00Z", "text": "The ML approach is sound. We need to ensure we have sufficient data privacy safeguards in place." },
+      { "author": "Peter Kaggwa", "authorRole": "Staff", "timestamp": "2025-06-28T15:00:00Z", "text": "Privacy impact assessment has been completed and attached." }
+    ],
+    "timeline": [
+      { "stage": "Submitted", "date": "2025-06-15" },
+      { "stage": "Concept Development", "date": "2025-06-22" },
+      { "stage": "Experimentation", "date": "2025-07-01" }
+    ],
+    "progressStages": [
+      { "name": "Submitted", "completed": true },
+      { "name": "Concept Development", "completed": true },
+      { "name": "Experimentation", "completed": false, "active": true },
+      { "name": "Deployment", "completed": false },
+      { "name": "Closed", "completed": false }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Mobile Banking Lite",
+    "category": "Product Innovation",
+    "department": "Information Technology",
+    "stage": "Submitted",
+    "status": "Declined",
+    "dateSubmitted": "2025-06-02T00:00:00Z",
+    "lastUpdated": "2025-06-10T00:00:00Z",
+    "submitterName": "Grace Nabatanzi",
+    "submitterEmail": "grace@bou.or.ug",
+    "submissionType": "individual",
+    "individual": {
+      "fullName": "Grace Nabatanzi",
+      "email": "grace@bou.or.ug",
+      "businessUnit": "Information Technology",
+      "dutyStation": "Headquarters",
+      "age": "25-34",
+      "gender": "Female",
+      "jobRank": "Operational Management"
+    },
+    "teamComposition": {},
+    "executiveSummary": "A lightweight mobile banking application targeting unbanked and underbanked populations in rural Uganda, featuring USSD and low-bandwidth connectivity support.",
+    "problemOrOpportunity": "Over 60% of Ugandan adults remain unbanked. Smartphone penetration is low in rural areas, but basic mobile phone ownership is high. There is an opportunity to extend banking services through a lightweight mobile solution.",
+    "proposedSolution": "A USSD and SMS-based mobile banking platform with a lightweight smartphone companion app that works on 2G/3G networks and requires minimal data usage.",
+    "attachments": [
+      { "name": "market_analysis.pdf", "type": "application/pdf", "size": 1280000 }
+    ],
+    "strategicObjective": "Deepen Financial Inclusion",
+    "innovationCategory": "Product/Service",
+    "sdgContribution": "SDG 1 - No Poverty",
+    "expectedBenefits": "Increased financial inclusion, reduced cash-based economy, improved savings culture among rural populations.",
+    "keyEnablers": "Partnership with mobile network operators, USSD gateway integration, agent network expansion, financial literacy programmes.",
+    "implementationApproach": "Pilot in two districts with high unbanked populations, then scale based on learnings.",
+    "expectedImpactIndicators": "500,000 new banked individuals within 2 years, 40% increase in rural transaction volume.",
+    "reviewer": "John Wasswa",
+    "reviewDeadline": "2025-07-15",
+    "reviewSlaStatus": "Overdue",
+    "approvalWorkflow": [
+      { "step": "Initial Review", "status": "Complete" },
+      { "step": "Manager Approval", "status": "Declined" }
+    ],
+    "comments": [
+      { "author": "John Wasswa", "authorRole": "Innovation Team", "timestamp": "2025-06-10T16:00:00Z", "text": "While the concept has merit, similar solutions already exist in the market. Declining due to low differentiation." }
+    ],
+    "timeline": [
+      { "stage": "Submitted", "date": "2025-06-02" }
+    ],
+    "progressStages": [
+      { "name": "Submitted", "completed": true },
+      { "name": "Concept Development", "completed": false },
+      { "name": "Experimentation", "completed": false },
+      { "name": "Deployment", "completed": false },
+      { "name": "Closed", "completed": false }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Biometric Branch Access",
+    "category": "Technology",
+    "department": "Operations",
+    "stage": "Deployment",
+    "status": "Approved",
+    "dateSubmitted": "2025-05-20T00:00:00Z",
+    "lastUpdated": "2025-07-01T00:00:00Z",
+    "submitterName": "John Wasswa",
+    "submitterEmail": "john@bou.or.ug",
+    "submissionType": "individual",
+    "individual": {
+      "fullName": "John Wasswa",
+      "email": "john@bou.or.ug",
+      "businessUnit": "Operations",
+      "dutyStation": "Headquarters",
+      "age": "45-54",
+      "gender": "Male",
+      "jobRank": "Senior Management"
+    },
+    "teamComposition": {},
+    "executiveSummary": "A biometric access control system for all Bank of Uganda branches that replaces traditional keycard access with fingerprint and facial recognition technology.",
+    "problemOrOpportunity": "Keycard access systems are vulnerable to loss, theft, and unauthorised sharing. Security breaches from compromised access credentials pose a significant risk.",
+    "proposedSolution": "Deploy biometric scanners (fingerprint + facial recognition) at all access points across BoU branches, integrated with the existing HR and security systems.",
+    "attachments": [
+      { "name": "security_assessment.pdf", "type": "application/pdf", "size": 2560000 },
+      { "name": "implementation_plan.docx", "type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "size": 1024000 }
+    ],
+    "strategicObjective": "Safeguard Financial Stability",
+    "innovationCategory": "Technology/System",
+    "sdgContribution": "SDG 16 - Peace, Justice and Strong Institutions",
+    "expectedBenefits": "Elimination of keycard-related security incidents, real-time access monitoring, automated attendance tracking, reduced administrative overhead.",
+    "keyEnablers": "Biometric hardware procurement, network infrastructure upgrade, data privacy compliance, staff enrolment and training.",
+    "implementationApproach": "Pilot at headquarters followed by phased rollout to all 12 regional branches over 6 months.",
+    "expectedImpactIndicators": "Zero access-related security incidents, 100% enrolment rate, sub-1-second authentication time.",
+    "reviewer": "Jane Mukasa",
+    "reviewDeadline": "2025-06-30",
+    "reviewSlaStatus": "On Track",
+    "approvalWorkflow": [
+      { "step": "Initial Review", "status": "Complete" },
+      { "step": "Manager Approval", "status": "Complete" },
+      { "step": "DDIPS Review", "status": "Complete" },
+      { "step": "Final Approval", "status": "Complete" }
+    ],
+    "comments": [
+      { "author": "Jane Mukasa", "authorRole": "Innovation Team", "timestamp": "2025-06-01T10:30:00Z", "text": "Strong proposal. Ensure data privacy impact assessment is completed before deployment." },
+      { "author": "John Wasswa", "authorRole": "Staff", "timestamp": "2025-06-05T09:00:00Z", "text": "DPIA has been completed and approved by the data protection officer." }
+    ],
+    "timeline": [
+      { "stage": "Submitted", "date": "2025-05-20" },
+      { "stage": "Concept Development", "date": "2025-05-28" },
+      { "stage": "Experimentation", "date": "2025-06-10" },
+      { "stage": "Deployment", "date": "2025-07-01" }
+    ],
+    "progressStages": [
+      { "name": "Submitted", "completed": true },
+      { "name": "Concept Development", "completed": true },
+      { "name": "Experimentation", "completed": true },
+      { "name": "Deployment", "completed": false, "active": true },
+      { "name": "Closed", "completed": false }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Chatbot for Customer Service",
+    "category": "Customer Experience",
+    "department": "Operations",
+    "stage": "Concept Development",
+    "status": "Pending Information",
+    "dateSubmitted": "2025-07-01T00:00:00Z",
+    "lastUpdated": "2025-07-12T00:00:00Z",
+    "submitterName": "Grace Nabatanzi",
+    "submitterEmail": "grace@bou.or.ug",
+    "submissionType": "team",
+    "individual": {},
+    "teamComposition": {
+      "teamMembersByRank": { "Middle Management": 2, "Operational Management": 2, "Administrative Assistant": 1 },
+      "teamMembersByAge": { "18-24": 1, "25-34": 3, "35-44": 1 },
+      "teamMembersByGender": { "Male": 2, "Female": 3 },
+      "teamMembersByStation": { "Headquarters": 4, "Masaka": 1 }
+    },
+    "executiveSummary": "An AI-powered chatbot that handles routine customer inquiries, reducing wait times and freeing human agents for complex issues.",
+    "problemOrOpportunity": "Customer service wait times average 15 minutes during peak hours. Over 60% of inquiries are repetitive questions about rates, branch locations, and basic procedures.",
+    "proposedSolution": "A multilingual chatbot integrated with the BoU website and mobile app that can handle inquiries in English, Luganda, and Runyankore using natural language processing.",
+    "attachments": [
+      { "name": "chatbot_requirements.pdf", "type": "application/pdf", "size": 896000 }
+    ],
+    "strategicObjective": "Enhance Stakeholder Confidence",
+    "innovationCategory": "Technology/System",
+    "sdgContribution": "SDG 9 - Industry, Innovation and Infrastructure",
+    "expectedBenefits": "Reduced customer wait times, 24/7 service availability, consistent responses, reduced staff workload.",
+    "keyEnablers": "NLP model development, multilingual training data, integration with knowledge base, website and mobile app integration.",
+    "implementationApproach": "Develop MVP with English language support first, then add Luganda and Runyankore in subsequent phases.",
+    "expectedImpactIndicators": "80% of routine inquiries handled by chatbot, average response time under 30 seconds, 90% customer satisfaction rate.",
+    "reviewer": "Peter Kaggwa",
+    "reviewDeadline": "2025-09-15",
+    "reviewSlaStatus": "On Track",
+    "approvalWorkflow": [
+      { "step": "Initial Review", "status": "Pending" },
+      { "step": "Manager Approval", "status": "Not Started" },
+      { "step": "DDIPS Review", "status": "Not Started" },
+      { "step": "Final Approval", "status": "Not Started" }
+    ],
+    "comments": [
+      { "author": "Peter Kaggwa", "authorRole": "Innovation Team", "timestamp": "2025-07-12T14:00:00Z", "text": "Please clarify the expected integration approach with the existing contact centre platform. What API capabilities does the current platform support?" }
+    ],
+    "timeline": [
+      { "stage": "Submitted", "date": "2025-07-01" },
+      { "stage": "Concept Development", "date": "2025-07-08" }
+    ],
+    "progressStages": [
+      { "name": "Submitted", "completed": true },
+      { "name": "Concept Development", "completed": false, "active": true },
+      { "name": "Experimentation", "completed": false },
+      { "name": "Deployment", "completed": false },
+      { "name": "Closed", "completed": false }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Open Banking API Platform",
+    "category": "FinTech",
+    "department": "Information Technology",
+    "stage": "Submitted",
+    "status": "Submitted",
+    "dateSubmitted": "2025-07-05T00:00:00Z",
+    "lastUpdated": "2025-07-05T00:00:00Z",
+    "submitterName": "Sarah Kemigisha",
+    "submitterEmail": "sarah@bou.or.ug",
+    "submissionType": "individual",
+    "individual": {
+      "fullName": "Sarah Kemigisha",
+      "email": "sarah@bou.or.ug",
+      "businessUnit": "Information Technology",
+      "dutyStation": "Headquarters",
+      "age": "25-34",
+      "gender": "Female",
+      "jobRank": "Middle Management"
+    },
+    "teamComposition": {},
+    "executiveSummary": "An open banking API platform that enables third-party developers to build innovative financial services on top of Bank of Uganda's payment infrastructure.",
+    "problemOrOpportunity": "The fintech ecosystem in Uganda lacks standardised access to banking infrastructure. An open API platform would spur innovation and enable new financial services.",
+    "proposedSolution": "A RESTful API gateway with standardised endpoints for payments, account information, and identity verification, with comprehensive developer documentation and sandbox environment.",
+    "attachments": [],
+    "strategicObjective": "Deepen Financial Inclusion",
+    "innovationCategory": "Product/Service",
+    "sdgContribution": "SDG 8 - Decent Work and Economic Growth",
+    "expectedBenefits": "Stimulated fintech innovation, standardised API access, reduced time-to-market for new financial services, enhanced ecosystem collaboration.",
+    "keyEnablers": "API gateway technology, developer portal, security standards (OAuth 2.0, OpenID Connect), regulatory framework for open banking.",
+    "implementationApproach": "Phased API release starting with payment initiation APIs, followed by account information services, then identity verification APIs.",
+    "expectedImpactIndicators": "50+ third-party integrations within 2 years, 100+ new financial services enabled, 20% increase in digital payment volume.",
+    "reviewer": "Jane Mukasa",
+    "reviewDeadline": "2025-09-30",
+    "reviewSlaStatus": "On Track",
+    "approvalWorkflow": [
+      { "step": "Initial Review", "status": "Pending" },
+      { "step": "Manager Approval", "status": "Not Started" },
+      { "step": "DDIPS Review", "status": "Not Started" },
+      { "step": "Final Approval", "status": "Not Started" }
+    ],
+    "comments": [],
+    "timeline": [
+      { "stage": "Submitted", "date": "2025-07-05" }
+    ],
+    "progressStages": [
+      { "name": "Submitted", "completed": true },
+      { "name": "Concept Development", "completed": false },
+      { "name": "Experimentation", "completed": false },
+      { "name": "Deployment", "completed": false },
+      { "name": "Closed", "completed": false }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Green Banking Initiative",
+    "category": "Sustainability",
+    "department": "Finance",
+    "stage": "Experimentation",
+    "status": "Under Review",
+    "dateSubmitted": "2025-06-10T00:00:00Z",
+    "lastUpdated": "2025-07-05T00:00:00Z",
+    "submitterName": "John Wasswa",
+    "submitterEmail": "john@bou.or.ug",
+    "submissionType": "team",
+    "individual": {},
+    "teamComposition": {
+      "teamMembersByRank": { "Executive Management": 1, "Senior Management": 2, "Middle Management": 2, "Operational Management": 1 },
+      "teamMembersByAge": { "35-44": 3, "45-54": 2, "55 and above": 1 },
+      "teamMembersByGender": { "Male": 3, "Female": 3 },
+      "teamMembersByStation": { "Headquarters": 4, "Mbale": 1, "Mbarara": 1 }
+    },
+    "executiveSummary": "A comprehensive green banking programme that reduces the environmental footprint of Bank of Uganda operations through energy efficiency, paperless processes, and sustainable procurement.",
+    "problemOrOpportunity": "BoU's operations consume significant energy and paper resources. There is growing stakeholder expectation for financial institutions to demonstrate environmental responsibility.",
+    "proposedSolution": "Implement solar energy at branches, digitise all paper-based processes, establish e-waste recycling programme, and introduce green procurement policy.",
+    "attachments": [
+      { "name": "sustainability_audit.pdf", "type": "application/pdf", "size": 3840000 }
+    ],
+    "strategicObjective": "Deepen Financial Inclusion",
+    "innovationCategory": "Business Model",
+    "sdgContribution": "SDG 13 - Climate Action",
+    "expectedBenefits": "50% reduction in carbon footprint, 70% reduction in paper usage, 30% energy cost savings, improved stakeholder perception.",
+    "keyEnablers": "Solar panel installation partners, paper digitisation technology, e-waste recycling vendors, green procurement guidelines.",
+    "implementationApproach": "Phase 1: Energy audit and solar installation at 3 largest branches. Phase 2: Paper digitisation across all departments. Phase 3: Full green procurement rollout.",
+    "expectedImpactIndicators": "500 tonnes CO2 reduction annually, 5 million sheets of paper saved annually, 100% renewable energy at major branches by 2027.",
+    "reviewer": "Jane Mukasa",
+    "reviewDeadline": "2025-08-30",
+    "reviewSlaStatus": "On Track",
+    "approvalWorkflow": [
+      { "step": "Initial Review", "status": "Complete" },
+      { "step": "Manager Approval", "status": "Pending" },
+      { "step": "DDIPS Review", "status": "Not Started" },
+      { "step": "Final Approval", "status": "Not Started" }
+    ],
+    "comments": [
+      { "author": "Jane Mukasa", "authorRole": "Innovation Team", "timestamp": "2025-06-25T15:00:00Z", "text": "Impressive scope. The sustainability audit provides a solid baseline. Let's schedule a meeting to discuss the implementation timeline." }
+    ],
+    "timeline": [
+      { "stage": "Submitted", "date": "2025-06-10" },
+      { "stage": "Concept Development", "date": "2025-06-18" },
+      { "stage": "Experimentation", "date": "2025-06-28" }
+    ],
+    "progressStages": [
+      { "name": "Submitted", "completed": true },
+      { "name": "Concept Development", "completed": true },
+      { "name": "Experimentation", "completed": false, "active": true },
+      { "name": "Deployment", "completed": false },
+      { "name": "Closed", "completed": false }
+    ]
+  }
+]
