@@ -4,6 +4,11 @@ export default defineConfig({
   root: '.',
   appType: 'mpa',
 
+  test: {
+    environment: 'jsdom',
+    globals: true,
+  },
+
   server: {
     port: 5173,
     open: '/index.html',

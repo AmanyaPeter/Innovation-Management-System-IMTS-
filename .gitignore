@@ -15,3 +15,4 @@ vite_dev.log
 *.db
 *.db-shm
 *.db-wal
+vite_dev.log
