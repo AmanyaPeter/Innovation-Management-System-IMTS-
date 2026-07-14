@@ -1,0 +1,19 @@
+@model Imts.Web.Services.IdeaResponse
+
+<div class="summary-card" style="cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 16px; background-color: var(--color-white); height: 100%; transition: box-shadow var(--transition-fast);" onclick="location.href='/Ideas/Details/@Model.Id'">
+    <div>
+        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+            <span style="font-size: 12px; color: var(--text-tertiary); font-weight: 500; text-transform: uppercase;">@Model.Category</span>
+            @await Component.InvokeAsync("StatusBadge", new { status = Model.Status })
+        </div>
+        <h4 style="font-size: 16px; font-weight: 600; color: var(--color-primary); margin: 0 0 8px 0; line-height: 1.4;">@Model.Title</h4>
+        <p style="font-size: 13px; color: var(--text-secondary); margin: 0 0 12px 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 36px; line-height: 1.4;">@Model.ExecutiveSummary</p>
+    </div>
+    <div style="border-top: 1px solid var(--color-border); padding-top: 12px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--text-tertiary);">
+        <div>
+            <span>By <strong>@Model.SubmitterName</strong></span>
+            <div style="margin-top: 2px;">@Model.Department</div>
+        </div>
+        <span>@Model.DateSubmitted</span>
+    </div>
+</div>

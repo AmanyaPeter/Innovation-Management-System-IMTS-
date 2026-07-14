@@ -1,0 +1,177 @@
+@model List<Imts.Web.Services.UserDto>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Granular Permissions";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" style="color: var(--color-success); background-color: #EBFDF2; border: 1px solid #DCFCE7; padding: 12px; border-radius: var(--radius-sm); margin-bottom: 20px; font-size: 14px;">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<div class="card" style="padding: 24px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background-color: var(--color-white);">
+    <h3 style="margin-top: 0; color: var(--color-primary); margin-bottom: 20px;">Role & System Access Control</h3>
+
+    <div class="table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Avatar</th>
+                    <th>User Detail</th>
+                    <th>Mapped Role</th>
+                    <th>Granted Permissions</th>
+                    <th>Account Status</th>
+                    <th>Action Settings</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count > 0)
+                {
+                    foreach (var user in Model)
+                    {
+                        var statusColor = user.AccountStatus == "Active" ? "var(--color-success)" : "var(--color-danger)";
+
+                        <tr>
+                            <td>
+                                <div style="width: 36px; height: 32px; border-radius: 50%; background-color: var(--color-surface-muted); color: var(--color-primary); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 13px; border: 1px solid var(--color-border);">@user.Avatar</div>
+                            </td>
+                            <td>
+                                <strong>@user.Name</strong>
+                                <div style="font-size: 12px; color: var(--text-tertiary); margin-top: 2px;">@user.Email</div>
+                                <div style="font-size: 11px; color: var(--text-tertiary);">@user.Department</div>
+                            </td>
+                            <td>
+                                <span style="font-size: 13px; font-weight: 500;">@user.Role</span>
+                            </td>
+                            <td>
+                                <div style="display: flex; flex-wrap: wrap; gap: 4px; max-width: 250px;">
+                                    @foreach (var perm in user.Permissions)
+                                    {
+                                        <span class="badge" style="background-color: var(--color-surface-muted); color: var(--text-secondary); border: 1px solid var(--color-border); font-size: 10px; border-radius: var(--radius-sm);">@perm</span>
+                                    }
+                                </div>
+                            </td>
+                            <td>
+                                <strong style="color: @statusColor;">@user.AccountStatus</strong>
+                            </td>
+                            <td>
+                                <div style="display: flex; flex-direction: column; gap: 6px;">
+                                    <!-- Configure permissions action -->
+                                    <button class="btn" onclick="openConfigureModal(@user.Id, '@user.Name', '@user.Role', '@string.Join(",", user.Permissions)')" style="padding: 4px 8px; font-size: 11px; background-color: var(--color-surface-muted); border: 1px solid var(--color-border); cursor: pointer; border-radius: var(--radius-sm);">Configure</button>
+
+                                    <!-- Enable / Disable -->
+                                    <form asp-controller="Review" asp-action="ToggleUserActive" asp-route-userId="@user.Id" method="post" style="display:inline;">
+                                        <button type="submit" class="btn" style="padding: 4px 8px; font-size: 11px; background-color: @(user.AccountStatus == "Active" ? "#FDF2F2" : "#EBFDF2"); border: 1px solid @(user.AccountStatus == "Active" ? "#FDE8E8" : "#DCFCE7"); color: @(user.AccountStatus == "Active" ? "var(--color-danger)" : "var(--color-success)"); cursor: pointer; border-radius: var(--radius-sm); width: 100%;">
+                                            @(user.AccountStatus == "Active" ? "Lock" : "Unlock")
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" style="text-align: center; color: var(--text-tertiary); padding: 24px;">No provisioned accounts in user pool.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Simple inline modal for configuring user permission/role -->
+<div id="configModal" style="display: none; position: fixed; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+    <div class="card" style="background-color: white; border-radius: var(--radius-md); padding: 24px; max-width: 450px; width: 100%; border: 1px solid var(--color-border);">
+        <h3 style="margin-top: 0; color: var(--color-primary); border-bottom: 1px solid var(--color-border); padding-bottom: 8px;" id="modalUserTitle">Configure Permissions</h3>
+
+        <form asp-controller="Review" asp-action="UpdateUserPermissions" method="post" style="margin-top: 16px;">
+            <input type="hidden" name="userId" id="modalUserId">
+
+            <div class="form-group" style="margin-bottom: 16px;">
+                <label for="modalRole" style="display: block; margin-bottom: 6px; font-weight: 600;">System Mapped Role</label>
+                <select id="modalRole" name="role" required style="width: 100%; padding: 8px; border: 1px solid var(--color-border); border-radius: var(--radius-sm);">
+                    <option value="Staff">Staff</option>
+                    <option value="Innovation Manager">Innovation Manager</option>
+                    <option value="Innovation Officer">Innovation Officer</option>
+                    <option value="IT Admin">IT Admin</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600;">Granted Permissions</label>
+                <div style="display: flex; flex-direction: column; gap: 8px;" id="permissionsContainer">
+                    <label style="display: inline-flex; align-items: center; gap: 6px; cursor: pointer; font-size: 13px;">
+                        <input type="checkbox" value="Submit Ideas" class="perm-chk"> Submit Ideas
+                    </label>
+                    <label style="display: inline-flex; align-items: center; gap: 6px; cursor: pointer; font-size: 13px;">
+                        <input type="checkbox" value="View Resources" class="perm-chk"> View Resources
+                    </label>
+                    <label style="display: inline-flex; align-items: center; gap: 6px; cursor: pointer; font-size: 13px;">
+                        <input type="checkbox" value="Review" class="perm-chk"> Review submissions
+                    </label>
+                    <label style="display: inline-flex; align-items: center; gap: 6px; cursor: pointer; font-size: 13px;">
+                        <input type="checkbox" value="Approve" class="perm-chk"> Final approvals
+                    </label>
+                    <label style="display: inline-flex; align-items: center; gap: 6px; cursor: pointer; font-size: 13px;">
+                        <input type="checkbox" value="Manage Categories" class="perm-chk"> Manage Categories
+                    </label>
+                    <label style="display: inline-flex; align-items: center; gap: 6px; cursor: pointer; font-size: 13px;">
+                        <input type="checkbox" value="Full System Access" class="perm-chk"> Full System Access
+                    </label>
+                </div>
+                <input type="hidden" name="permissionsList" id="permissionsList">
+            </div>
+
+            <div style="display: flex; gap: 12px; justify-content: flex-end;">
+                <button type="button" class="btn" onclick="closeConfigureModal()" style="padding: 8px 16px; border: 1px solid var(--color-border); background-color: var(--color-surface-muted); cursor: pointer; border-radius: var(--radius-sm);">Cancel</button>
+                <button type="submit" class="btn btn-primary" onclick="assemblePermissions()" style="padding: 8px 16px; background-color: var(--color-primary); color: white; border: none; cursor: pointer; border-radius: var(--radius-sm);">Save Rules</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const configModal = document.getElementById('configModal');
+        const modalUserId = document.getElementById('modalUserId');
+        const modalUserTitle = document.getElementById('modalUserTitle');
+        const modalRole = document.getElementById('modalRole');
+        const permissionsListInput = document.getElementById('permissionsList');
+
+        function openConfigureModal(userId, name, role, permissions) {
+            modalUserId.value = userId;
+            modalUserTitle.innerText = "Access for: " + name;
+            modalRole.value = role;
+
+            // Clear checkboxes
+            const checkboxes = document.querySelectorAll('.perm-chk');
+            checkboxes.forEach(chk => chk.checked = false);
+
+            // Populate checkboxes
+            if (permissions) {
+                const permsArr = permissions.split(',');
+                checkboxes.forEach(chk => {
+                    if (permsArr.includes(chk.value)) {
+                        chk.checked = true;
+                    }
+                });
+            }
+
+            configModal.style.display = 'flex';
+        }
+
+        function closeConfigureModal() {
+            configModal.style.display = 'none';
+        }
+
+        function assemblePermissions() {
+            const checkboxes = document.querySelectorAll('.perm-chk:checked');
+            const values = Array.from(checkboxes).map(chk => chk.value);
+            permissionsListInput.value = values.join(',');
+        }
+    </script>
+}

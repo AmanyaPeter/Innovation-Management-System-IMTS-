@@ -1,0 +1,85 @@
+@model dynamic
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Innovation Team Dashboard";
+}
+
+<div class="welcome-bar">
+    <h1>Welcome, @User.FindFirst("DisplayName")?.Value</h1>
+    <p>Review and administer BOU innovation proposal pipeline</p>
+</div>
+
+<div class="summary-cards">
+    <div class="summary-card">
+        <div class="card-label">Submitted Ideas</div>
+        <div class="card-value">@ViewBag.SubmittedCount</div>
+        <div class="card-sub">Initial evaluation</div>
+    </div>
+    <div class="summary-card">
+        <div class="card-label">Concept Development</div>
+        <div class="card-value">@ViewBag.ConceptCount</div>
+        <div class="card-sub">Refinement & detailing</div>
+    </div>
+    <div class="summary-card">
+        <div class="card-label">Experimentation</div>
+        <div class="card-value">@ViewBag.ExperimentationCount</div>
+        <div class="card-sub">Prototype & validation</div>
+    </div>
+    <div class="summary-card">
+        <div class="card-label">Deployment</div>
+        <div class="card-value">@ViewBag.DeploymentCount</div>
+        <div class="card-sub">Scaling & implementation</div>
+    </div>
+</div>
+
+<div class="card" style="margin-top: 24px; padding: 24px;">
+    <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h3>Review Queue & SLA SLA Metrics</h3>
+        <div style="display: flex; gap: 16px; font-size: 13px;">
+            <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 50%; background-color: var(--color-success);"></span> On Track: @ViewBag.SlaOnTrack</span>
+            <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 50%; background-color: #E2B13C;"></span> Warning: @ViewBag.SlaWarning</span>
+            <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 50%; background-color: var(--color-danger);"></span> Breached: @ViewBag.SlaBreaches</span>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Submitter</th>
+                    <th>Department</th>
+                    <th>SLA Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.ReviewQueue != null && ViewBag.ReviewQueue.Count > 0)
+                {
+                    foreach (var idea in ViewBag.ReviewQueue)
+                    {
+                        var slaColor = "var(--color-success)";
+                        if (idea.ReviewSlaStatus == "Warning") slaColor = "#E2B13C";
+                        else if (idea.ReviewSlaStatus == "Breached") slaColor = "var(--color-danger)";
+
+                        <tr>
+                            <td><strong>@idea.Title</strong><div style="font-size: 11px; color: var(--text-tertiary); margin-top: 2px;">@idea.Category</div></td>
+                            <td>@idea.SubmitterName</td>
+                            <td>@idea.Department</td>
+                            <td><span style="display: inline-flex; align-items: center; gap: 6px; font-weight: 600; color: @slaColor;"><span style="width: 8px; height: 8px; border-radius: 50%; background-color: @slaColor;"></span> @idea.ReviewSlaStatus</span></td>
+                            <td>
+                                <a href="/Review/ReviewIdea/@idea.Id" class="btn btn-primary" style="padding: 6px 12px; font-size: 13px; text-decoration: none; border-radius: var(--radius-sm); background-color: var(--color-primary); color: white; display: inline-block;">Review</a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" style="text-align: center; color: var(--text-tertiary); padding: 24px;">All reviews complete! The queue is empty.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

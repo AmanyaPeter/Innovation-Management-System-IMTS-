@@ -1,0 +1,35 @@
+@model List<Imts.Web.Services.NotificationItem>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Notifications Center";
+}
+
+<div class="card" style="padding: 24px;">
+    <h3 style="margin-top: 0; margin-bottom: 20px; color: var(--color-primary);">Notifications Inbox</h3>
+
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var notif in Model)
+            {
+                <div class="notification-item" style="display: flex; align-items: start; gap: 16px; padding: 16px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background-color: @(notif.IsRead ? "var(--color-white)" : "var(--color-surface-muted)");">
+                    <div class="notif-icon" style="background-color: var(--color-white); color: var(--color-primary); border-radius: 50%; padding: 10px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--color-border);">
+                        <i data-lucide="mail" style="width:20px;height:20px;"></i>
+                    </div>
+                    <div class="notif-content" style="flex: 1;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span class="badge" style="background-color: var(--color-primary); color: white; font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 600;">@notif.Category</span>
+                            <span style="font-size: 11px; color: var(--text-tertiary);">@notif.Timestamp</span>
+                        </div>
+                        <h4 style="margin: 8px 0 4px 0; font-size: 15px; font-weight: 600;">@notif.Title</h4>
+                        <p style="margin: 0; font-size: 13px; color: var(--text-secondary); line-height: 1.4;">@notif.Message</p>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div style="text-align: center; color: var(--text-tertiary); padding: 40px;">No notifications found.</div>
+        }
+    </div>
+</div>

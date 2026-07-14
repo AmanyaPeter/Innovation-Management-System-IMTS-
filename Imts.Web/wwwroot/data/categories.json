@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "name": "FinTech",
+    "description": "Financial technology innovations including digital payments, blockchain, and digital currencies",
+    "createdDate": "2025-01-01",
+    "status": "Active"
+  },
+  {
+    "id": 2,
+    "name": "Process Improvement",
+    "description": "Innovations that improve efficiency, reduce costs, or enhance the quality of banking processes",
+    "createdDate": "2025-01-01",
+    "status": "Active"
+  },
+  {
+    "id": 3,
+    "name": "Technology",
+    "description": "Technology-driven innovations including AI, biometrics, cybersecurity, and infrastructure modernisation",
+    "createdDate": "2025-01-15",
+    "status": "Active"
+  },
+  {
+    "id": 4,
+    "name": "Product Innovation",
+    "description": "New or enhanced banking products and services for customers and stakeholders",
+    "createdDate": "2025-01-15",
+    "status": "Active"
+  },
+  {
+    "id": 5,
+    "name": "Customer Experience",
+    "description": "Innovations focused on improving customer service, engagement, and satisfaction",
+    "createdDate": "2025-02-01",
+    "status": "Active"
+  },
+  {
+    "id": 6,
+    "name": "Sustainability",
+    "description": "Green banking, environmental sustainability, and socially responsible innovations",
+    "createdDate": "2025-03-01",
+    "status": "Active"
+  },
+  {
+    "id": 7,
+    "name": "Legacy Systems",
+    "description": "Innovations related to modernising or replacing legacy banking systems",
+    "createdDate": "2025-01-01",
+    "status": "Inactive"
+  }
+]

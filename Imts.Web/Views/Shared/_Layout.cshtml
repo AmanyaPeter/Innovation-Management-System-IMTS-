@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BOU Innovation Management</title>
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
+    <link rel="stylesheet" href="~/css/tokens.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body class="@ViewData["BodyClass"]">
+    @if (User.Identity != null && User.Identity.IsAuthenticated)
+    {
+        var role = User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value ?? "Staff";
+        var displayName = User.FindFirst("DisplayName")?.Value ?? User.Identity.Name;
+        var avatar = User.FindFirst("Avatar")?.Value ?? (displayName?.Substring(0, 1) ?? "U");
+
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-logo"><img src="~/favicon.ico" alt="BOU" style="width:32px;height:32px;"></div>
+                <div class="brand-text">Bank of Uganda<span>Innovation Management</span></div>
+            </div>
+
+            @await Component.InvokeAsync("RoleNav")
+
+            <div class="sidebar-footer">BOU Innovation System v1.0</div>
+        </aside>
+
+        <div class="main-wrapper">
+            <header class="top-header">
+                <div class="header-left">
+                    <h2>@ViewData["PageHeader"]</h2>
+                </div>
+                <div class="header-right">
+                    <button class="notification-btn" onclick="location.href='/Home/Notifications'"><i data-lucide="bell" style="width:20px;height:20px;"></i><span class="badge-dot"></span></button>
+                    <div class="user-profile">
+                        <div class="avatar">@avatar</div>
+                        <span class="user-name">@displayName</span>
+                    </div>
+                    <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline;">
+                        <button type="submit" class="logout-btn">Log out</button>
+                    </form>
+                </div>
+            </header>
+
+            <main class="main-content">
+                @RenderBody()
+            </main>
+        </div>
+    }
+    else
+    {
+        @RenderBody()
+    }
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

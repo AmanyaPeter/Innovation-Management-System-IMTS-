@@ -1,0 +1,17 @@
+@model string
+
+@{
+    var cssClass = "badge-submitted";
+    var status = Model ?? "";
+    var statusLower = status.ToLower().Trim();
+
+    if (statusLower == "draft") cssClass = "badge-draft";
+    else if (statusLower == "under review" || statusLower == "under_review") cssClass = "badge-under-review";
+    else if (statusLower == "approved") cssClass = "badge-approved";
+    else if (statusLower == "declined" || statusLower == "rejected") cssClass = "badge-declined";
+    else if (statusLower == "retracted") cssClass = "badge-retracted";
+    else if (statusLower == "cancelled") cssClass = "badge-cancelled";
+    else if (statusLower == "pending information" || statusLower == "pending_information") cssClass = "badge-pending-information";
+}
+
+<span class="badge @cssClass">@status</span>

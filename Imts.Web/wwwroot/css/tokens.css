@@ -1,0 +1,18 @@
+:root {
+  --color-primary: #5A0C08;
+  --color-primary-hover: #7A1410;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --text-primary: #000000;
+  --text-secondary: #3A3A3A;
+  --text-tertiary: #6E6E6E;
+  --color-surface-muted: #F7F4F3;
+  --color-border: #E4DCDB;
+  --color-danger: #B3261E;
+  --color-success: #1E6B45;
+  --font-heading: Aptos, 'Segoe UI', system-ui, sans-serif;
+  --font-body: Aptos, 'Segoe UI', system-ui, sans-serif;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --transition-fast: 150ms ease;
+}

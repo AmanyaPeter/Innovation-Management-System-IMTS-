@@ -1,0 +1,96 @@
+@model List<Imts.Web.Services.ActivityItem>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "System Activity Trail";
+}
+
+<div class="card" style="padding: 24px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background-color: var(--color-white);">
+    <h3 style="margin-top: 0; color: var(--color-primary); margin-bottom: 20px;">System Activity Trail Audit</h3>
+
+    <!-- Filter and Search controls -->
+    <div style="display: flex; gap: 16px; margin-bottom: 24px; align-items: center; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 250px; position: relative;">
+            <input type="text" id="logSearch" placeholder="Search logs by action, details, user..." style="width: 100%; padding: 10px 10px 10px 36px; border: 1px solid var(--color-border); border-radius: var(--radius-sm);">
+            <i data-lucide="search" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--text-tertiary);"></i>
+        </div>
+        <div style="width: 200px;">
+            <select id="moduleFilter" style="width: 100%; padding: 10px; border: 1px solid var(--color-border); border-radius: var(--radius-sm);">
+                <option value="">All Modules</option>
+                <option value="auth">Auth / Security</option>
+                <option value="ideas">Ideas Pipeline</option>
+                <option value="categories">Categories CRUD</option>
+                <option value="admin">System Administration</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table class="data-table" id="activityLogsTable">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Module</th>
+                    <th>Logged Action</th>
+                    <th>Details</th>
+                    <th>Timestamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count > 0)
+                {
+                    foreach (var log in Model)
+                    {
+                        <tr data-module="@log.Module.ToLower()" data-text="@log.User.ToLower() @log.Action.ToLower() @log.Details.ToLower()">
+                            <td><strong>@log.User</strong></td>
+                            <td>
+                                <span class="badge" style="background-color: var(--color-surface-muted); color: var(--text-primary); border: 1px solid var(--color-border); font-size: 11px; border-radius: var(--radius-sm);">@log.Module</span>
+                            </td>
+                            <td><strong style="color: var(--color-primary);">@log.Action</strong></td>
+                            <td style="font-size: 13px; color: var(--text-secondary);">@log.Details</td>
+                            <td style="font-size: 12px; color: var(--text-tertiary); white-space: nowrap;">@log.Timestamp</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" style="text-align: center; color: var(--text-tertiary); padding: 24px;">No activity logs found.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const logSearch = document.getElementById('logSearch');
+        const moduleFilter = document.getElementById('moduleFilter');
+        const rows = document.querySelectorAll('#activityLogsTable tbody tr');
+
+        function filterLogs() {
+            const query = logSearch.value.toLowerCase().trim();
+            const mod = moduleFilter.value.toLowerCase();
+
+            rows.forEach(row => {
+                if (row.cells.length < 5) return;
+                const text = row.getAttribute('data-text') || '';
+                const rowModule = row.getAttribute('data-module') || '';
+
+                const matchesSearch = text.includes(query);
+                const matchesModule = mod === '' || rowModule.includes(mod);
+
+                if (matchesSearch && matchesModule) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        if (logSearch && moduleFilter) {
+            logSearch.addEventListener('input', filterLogs);
+            moduleFilter.addEventListener('change', filterLogs);
+        }
+    </script>
+}

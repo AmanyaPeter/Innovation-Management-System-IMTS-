@@ -1,0 +1,29 @@
+@model string
+
+<ul class="sidebar-nav">
+    @if (Model == "Staff")
+    {
+        <li><a href="/Home/Dashboard" class="@(ViewContext.RouteData.Values["Action"]?.ToString() == "Dashboard" && ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" ? "active" : "")"><span class="nav-icon"><i data-lucide="layout-dashboard" style="width:18px;height:18px;"></i></span><span>Dashboard</span></a></li>
+        <li><a href="/Ideas/Submit" class="@(ViewContext.RouteData.Values["Action"]?.ToString() == "Submit" ? "active" : "")"><span class="nav-icon"><i data-lucide="plus" style="width:18px;height:18px;"></i></span><span>Submit Idea</span></a></li>
+        <li><a href="/Ideas/MyIdeas" class="@(ViewContext.RouteData.Values["Action"]?.ToString() == "MyIdeas" ? "active" : "")"><span class="nav-icon"><i data-lucide="list" style="width:18px;height:18px;"></i></span><span>My Ideas</span></a></li>
+        <li><a href="/Home/Notifications" class="@(ViewContext.RouteData.Values["Action"]?.ToString() == "Notifications" ? "active" : "")"><span class="nav-icon"><i data-lucide="mail" style="width:18px;height:18px;"></i></span><span>Notifications</span></a></li>
+        <li><a href="/Home/Resources" class="@(ViewContext.RouteData.Values["Action"]?.ToString() == "Resources" ? "active" : "")"><span class="nav-icon"><i data-lucide="book-open" style="width:18px;height:18px;"></i></span><span>Resources</span></a></li>
+        <li><a href="#"><span class="nav-icon"><i data-lucide="user" style="width:18px;height:18px;"></i></span><span>Profile</span></a></li>
+    }
+    else if (Model == "InnovationTeam")
+    {
+        <li><a href="/Home/Dashboard" class="@(ViewContext.RouteData.Values["Action"]?.ToString() == "Dashboard" && ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" ? "active" : "")"><span class="nav-icon"><i data-lucide="layout-dashboard" style="width:18px;height:18px;"></i></span><span>Review Dashboard</span></a></li>
+        <li><a href="/Review/SubmittedIdeas" class="@(ViewContext.RouteData.Values["Controller"]?.ToString() == "Review" && ViewContext.RouteData.Values["Action"]?.ToString() == "SubmittedIdeas" ? "active" : "")"><span class="nav-icon"><i data-lucide="list" style="width:18px;height:18px;"></i></span><span>Submitted Ideas</span></a></li>
+        <li><a href="/Review/Categories" class="@(ViewContext.RouteData.Values["Action"]?.ToString() == "Categories" ? "active" : "")"><span class="nav-icon"><i data-lucide="settings" style="width:18px;height:18px;"></i></span><span>Categories</span></a></li>
+        <li><a href="/Review/Reports" class="@(ViewContext.RouteData.Values["Action"]?.ToString() == "Reports" ? "active" : "")"><span class="nav-icon"><i data-lucide="file-spreadsheet" style="width:18px;height:18px;"></i></span><span>Reports</span></a></li>
+        <li><a href="/Review/Permissions" class="@(ViewContext.RouteData.Values["Action"]?.ToString() == "Permissions" ? "active" : "")"><span class="nav-icon"><i data-lucide="user-check" style="width:18px;height:18px;"></i></span><span>Permissions</span></a></li>
+        <li><a href="#"><span class="nav-icon"><i data-lucide="user" style="width:18px;height:18px;"></i></span><span>Profile</span></a></li>
+    }
+    else if (Model == "ITAdmin")
+    {
+        <li><a href="/Home/Dashboard" class="@(ViewContext.RouteData.Values["Action"]?.ToString() == "Dashboard" && ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" ? "active" : "")"><span class="nav-icon"><i data-lucide="layout-dashboard" style="width:18px;height:18px;"></i></span><span>Admin Dashboard</span></a></li>
+        <li><a href="/Admin/Users" class="@(ViewContext.RouteData.Values["Action"]?.ToString() == "Users" ? "active" : "")"><span class="nav-icon"><i data-lucide="user" style="width:18px;height:18px;"></i></span><span>Users</span></a></li>
+        <li><a href="/Admin/ActivityLog" class="@(ViewContext.RouteData.Values["Action"]?.ToString() == "ActivityLog" ? "active" : "")"><span class="nav-icon"><i data-lucide="file-text" style="width:18px;height:18px;"></i></span><span>Activity Log</span></a></li>
+        <li><a href="#"><span class="nav-icon"><i data-lucide="user" style="width:18px;height:18px;"></i></span><span>Profile</span></a></li>
+    }
+</ul>

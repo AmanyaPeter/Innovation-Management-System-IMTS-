@@ -1,0 +1,111 @@
+@model Imts.Web.Services.IdeaResponse
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Review Idea Console";
+}
+
+<div style="margin-bottom: 24px;">
+    <a href="/Review/SubmittedIdeas" style="display: inline-flex; align-items: center; gap: 6px; color: var(--color-primary); text-decoration: none; font-weight: 500; font-size: 14px; margin-bottom: 12px;">
+        <i data-lucide="arrow-left" style="width:16px;height:16px;"></i> Back to review queue
+    </a>
+    <h2 style="margin: 0; color: var(--color-primary);">Evaluate Idea: @Model.Title</h2>
+    <p style="margin: 4px 0 0 0; color: var(--text-secondary); font-size: 14px;">Submitted by <strong>@Model.SubmitterName</strong> (@Model.Department) on @Model.DateSubmitted</p>
+</div>
+
+<div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px; align-items: start;">
+    <!-- Left Column: Review Form -->
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+        <div class="card" style="padding: 24px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background-color: var(--color-white);">
+            <h3 style="margin-top: 0; border-bottom: 2px solid var(--color-border); padding-bottom: 8px; color: var(--color-primary); font-size: 18px;">Executive Review Console</h3>
+
+            <form asp-controller="Review" asp-action="ReviewIdea" asp-route-id="@Model.Id" method="post" style="margin-top: 16px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                    <div class="form-group">
+                        <label for="decision" style="display: block; margin-bottom: 6px; font-weight: 600;">Status Decision</label>
+                        <select id="decision" name="decision" required style="width: 100%; padding: 10px; border: 1px solid var(--color-border); border-radius: var(--radius-sm);">
+                            <option value="Under Review" selected="@(Model.Status == "Under Review")">Under Review</option>
+                            <option value="Approved" selected="@(Model.Status == "Approved")">Approved</option>
+                            <option value="Declined" selected="@(Model.Status == "Declined")">Declined</option>
+                            <option value="Pending Information" selected="@(Model.Status == "Pending Information")">Pending Information</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reviewDeadline" style="display: block; margin-bottom: 6px; font-weight: 600;">Review Deadline</label>
+                        <input type="text" id="reviewDeadline" readonly value="@(string.IsNullOrEmpty(Model.ReviewDeadline) ? "Not Specified" : Model.ReviewDeadline)" style="width: 100%; padding: 10px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background-color: var(--color-surface-muted);">
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label for="note" style="display: block; margin-bottom: 6px; font-weight: 600;">Evaluation Notes & Feedback</label>
+                    <textarea id="note" name="note" required placeholder="Provide details explaining this decision, next milestone tasks, or information requested from submitter..." style="width: 100%; min-height: 120px; padding: 12px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-size: 14px;"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 15px; font-weight: 600; background-color: var(--color-primary); color: white; border: none; border-radius: var(--radius-sm); cursor: pointer;">Save Evaluation & Advance Stage</button>
+            </form>
+        </div>
+
+        <div class="card" style="padding: 24px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background-color: var(--color-white);">
+            <h3 style="margin-top: 0; border-bottom: 2px solid var(--color-border); padding-bottom: 8px; color: var(--color-primary); font-size: 18px;">Review Comments</h3>
+
+            <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
+                @if (Model.Comments != null && Model.Comments.Count > 0)
+                {
+                    foreach (var comment in Model.Comments)
+                    {
+                        <div style="padding: 12px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background-color: var(--color-surface-muted); font-size: 13px;">
+                            <div style="display: flex; justify-content: space-between; font-weight: 600; margin-bottom: 4px;">
+                                <span>@comment.Author <span style="font-size: 11px; font-weight: normal; color: var(--text-tertiary);">(@comment.AuthorRole)</span></span>
+                                <span style="font-size: 11px; color: var(--text-tertiary); font-weight: normal;">@comment.Timestamp</span>
+                            </div>
+                            <div style="color: var(--text-secondary); line-height: 1.4;">@comment.Text</div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div style="text-align: center; color: var(--text-tertiary); padding: 16px;">No comments.</div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Column: Approval Checklist -->
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+        <div class="card" style="padding: 20px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background-color: var(--color-white);">
+            <h4 style="margin-top: 0; margin-bottom: 12px; color: var(--color-primary); font-size: 16px; border-bottom: 1px solid var(--color-border); padding-bottom: 8px;">Approval Checklist</h4>
+
+            <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 12px;">
+                @if (Model.ApprovalWorkflow != null && Model.ApprovalWorkflow.Count > 0)
+                {
+                    foreach (var step in Model.ApprovalWorkflow)
+                    {
+                        var isComplete = step.Status == "Complete";
+                        var stepColor = isComplete ? "var(--color-success)" : (step.Status == "Declined" ? "var(--color-danger)" : "var(--text-tertiary)");
+                        var icon = isComplete ? "check-circle" : (step.Status == "Declined" ? "x-circle" : "clock");
+
+                        <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13px;">
+                            <span style="font-weight: 500;">@step.Step</span>
+                            <span style="display: inline-flex; align-items: center; gap: 4px; font-weight: 600; color: @stepColor;">
+                                <i data-lucide="@icon" style="width:14px;height:14px;"></i> @step.Status
+                            </span>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div style="font-size: 13px; color: var(--text-tertiary);">No custom workflow steps defined.</div>
+                }
+            </div>
+        </div>
+
+        <div class="card" style="padding: 20px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background-color: var(--color-white);">
+            <h4 style="margin-top: 0; margin-bottom: 12px; color: var(--color-primary); font-size: 16px; border-bottom: 1px solid var(--color-border); padding-bottom: 8px;">Concept Details</h4>
+
+            <div style="font-size: 13px; line-height: 1.5; display: flex; flex-direction: column; gap: 10px;">
+                <div><span style="color: var(--text-tertiary); font-weight: 500;">Category:</span> <br>@Model.Category</div>
+                <div><span style="color: var(--text-tertiary); font-weight: 500;">Innovation Stream:</span> <br>@Model.InnovationCategory</div>
+                <div><span style="color: var(--text-tertiary); font-weight: 500;">SLA Tracker Status:</span> <br><strong style="color: @(Model.ReviewSlaStatus == "On Track" ? "var(--color-success)" : "var(--color-danger)")">@Model.ReviewSlaStatus</strong></div>
+            </div>
+        </div>
+    </div>
+</div>
