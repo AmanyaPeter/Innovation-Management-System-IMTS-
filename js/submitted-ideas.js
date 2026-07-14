@@ -7,7 +7,9 @@
       IdeaService.getIdeas(),
       getLocalIdeas()
     ]).then(function (results) {
-      allIdeas = results[0].concat(results[1]);
+      allIdeas = results[0].filter(function (r) {
+        return !results[1].some(function (l) { return l.id === r.id; });
+      }).concat(results[1]);
       render();
     });
   }

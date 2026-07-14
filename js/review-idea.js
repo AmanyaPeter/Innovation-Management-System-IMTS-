@@ -13,7 +13,9 @@
       IdeaService.getIdeas(),
       getLocalIdeas()
     ]).then(function (results) {
-      var all = results[0].concat(results[1]);
+      var all = results[0].filter(function (r) {
+        return !results[1].some(function (l) { return l.id === r.id; });
+      }).concat(results[1]);
       var idea = all.find(function (i) { return i.id === id; });
       if (!idea) return;
       renderIdea(idea);

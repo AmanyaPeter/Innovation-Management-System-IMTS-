@@ -71,7 +71,9 @@
     ]).then(function (results) {
       var remote = results[0];
       var local = results[1];
-      allIdeas = remote.concat(local);
+      allIdeas = remote.filter(function (r) {
+        return !local.some(function (l) { return l.id === r.id; });
+      }).concat(local);
 
       // Apply search, filter, sort, pagination
       var filtered = applyFilters(allIdeas);

@@ -16,7 +16,9 @@
       IdeaService.getIdeas(),
       getLocalIdeas()
     ]).then(function (results) {
-      var all = results[0].concat(results[1]);
+      var all = results[0].filter(function (r) {
+        return !results[1].some(function (l) { return l.id === r.id; });
+      }).concat(results[1]);
       var idea = all.find(function (i) { return i.id === id; });
       if (!idea) {
         document.querySelector('.detail-grid').innerHTML = '<div class="card" style="padding:40px;text-align:center;color:var(--text-tertiary);">Idea not found.</div>';
@@ -62,17 +64,39 @@
     setText('Proposed Solution ~ p', idea.proposedSolution);
 
     // Attachments
-    var attachContainer = document.querySelector('.detail-section:has(h3) ~ div[style*="gap"]');
-    if (attachContainer && idea.attachments && idea.attachments.length) {
-      attachContainer.innerHTML = '';
-      idea.attachments.forEach(function (a) {
-        var span = document.createElement('span');
-        span.style.cssText = 'background:#f0f0f0;padding:6px 14px;border-radius:4px;font-size:13px;';
-        var icon = a.type?.indexOf('spreadsheet') !== -1 ? 'bar-chart-3' : a.type?.indexOf('image') !== -1 ? 'image' : 'file-text';
-        span.innerHTML = '<i data-lucide="' + icon + '" style="width:14px;height:14px;vertical-align:middle;"></i> ' + escapeHtml(a.name);
-        attachContainer.appendChild(span);
-      });
-      if (typeof lucide !== 'undefined') lucide.createIcons();
+    var attachContainer = null;
+    var sections = document.querySelectorAll('.detail-section');
+    sections.forEach(function (s) {
+      var h3 = s.querySelector('h3');
+      if (h3 && h3.textContent.trim() === 'Attachments') {
+        attachContainer = s.querySelector('div[style*="gap"]');
+      }
+    });
+
+    if (attachContainer) {
+      if (idea.attachments && idea.attachments.length) {
+        attachContainer.innerHTML = '';
+        idea.attachments.forEach(function (a) {
+          var el;
+          if (a.data) {
+            el = document.createElement('a');
+            el.href = a.data;
+            el.download = a.name;
+            el.title = 'Click to download ' + a.name;
+            el.style.cssText = 'background:#f0f0f0;padding:6px 14px;border-radius:4px;font-size:13px;color:var(--text-primary);text-decoration:none;display:inline-flex;align-items:center;gap:6px;cursor:pointer;';
+          } else {
+            el = document.createElement('span');
+            el.style.cssText = 'background:#f0f0f0;padding:6px 14px;border-radius:4px;font-size:13px;display:inline-flex;align-items:center;gap:6px;';
+          }
+
+          var icon = a.type?.indexOf('spreadsheet') !== -1 ? 'bar-chart-3' : a.type?.indexOf('image') !== -1 ? 'image' : 'file-text';
+          el.innerHTML = '<i data-lucide="' + icon + '" style="width:14px;height:14px;"></i> ' + escapeHtml(a.name);
+          attachContainer.appendChild(el);
+        });
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+      } else {
+        attachContainer.innerHTML = '<span style="color:var(--text-tertiary);font-size:13px;">No attachments</span>';
+      }
     }
 
     // Progress tracker
